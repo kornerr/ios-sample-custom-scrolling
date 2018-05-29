@@ -9,51 +9,17 @@ class FourDirectionsCoordinator
     var rootVC: UIViewController!
     var rootVCChanged: SimpleCallback?
 
+    private var fourDirectionsView: FourDirectionsView!
+
     init()
     {
-        self.setupSample()
-    }
-
-    // MARK: - SAMPLE
-
-    private var sampleView: FourDirectionsView!
-    private var sampleVC: FourDirectionsVC!
-
-    private func setupSample()
-    {
         // Create View and VC.
-        self.sampleView = UIView.loadFromNib()
-        self.sampleVC = FourDirectionsVC()
-        self.sampleVC.mainView = self.sampleView
-        let nc = UINavigationController(rootViewController: self.sampleVC)
+        self.fourDirectionsView = UIView.loadFromNib()
+        let vc = UIViewControllerTemplate<FourDirectionsView>(mainView: self.fourDirectionsView)
+        let nc = UINavigationController(rootViewController: vc)
         self.rootVC = nc
 
-        // Display alert.
-        self.sampleView.displayAlertReport = { [weak self] in
-            guard let this = self else { return }
-            this.displayAlert(from: this.sampleVC)
-        }
-    }
-
-    private func displayAlert(from parent: UIViewController)
-    {
-        let title = NSLocalizedString("Sample.Alert.Title", comment: "")
-        let message = NSLocalizedString("Sample.Alert.Message", comment: "")
-        let alert =
-            UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-            )
-        let ok = NSLocalizedString("Sample.Alert.OK", comment: "")
-        alert.addAction(
-            UIAlertAction(
-                title: ok,
-                style: .default,
-                handler: nil
-            )
-        )
-        parent.present(alert, animated: true, completion: nil)
+        // TODO Display products?
     }
 
 }

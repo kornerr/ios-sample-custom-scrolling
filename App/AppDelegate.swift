@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // Create window.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // Create coordinator.
-        self.setupMenuProductsCoordinator()
+        self.setupFourDirectionsCoordinator()
         // Display window.
         self.window!.backgroundColor = UIColor.white
         self.window!.makeKeyAndVisible()
@@ -37,26 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             guard let this = self else { return }
             this.window!.rootViewController = this.fourDirectionsCoordinator.rootVC
         }
-    }
-
-    // MARK: - THREE LEVELS COORDINATOR
-
-    private var threeLevelsCoordinator: ThreeLevelsCoordinator!
-    
-    private func setupThreeLevelsCoordinator()
-    {
-        self.threeLevelsCoordinator = ThreeLevelsCoordinator()
-        self.window!.rootViewController = self.threeLevelsCoordinator.rootVC
-    }
-
-    // MARK: - MENU PRODUCTS COORDINATOR
-
-    private var menuProductsCoordinator: MenuProductsCoordinator!
-    
-    private func setupMenuProductsCoordinator()
-    {
-        self.menuProductsCoordinator = MenuProductsCoordinator()
-        self.window!.rootViewController = self.menuProductsCoordinator.rootVC
     }
 
 }

@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,21 +17,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-SL-XP5">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-1q-Di2" userLabel="Button">
-                            <rect key="frame" x="20" y="269" width="280" height="30"/>
-                            <state key="normal" title="Display popup"/>
-                            <connections>
-                                <action selector="displayAlert:" destination="iN0-l3-epB" eventType="touchUpInside" id="uKH-hd-vXs"/>
-                            </connections>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Hgn-1q-Di2" secondAttribute="trailing" constant="20" id="5cA-yy-eFD"/>
-                        <constraint firstItem="Hgn-1q-Di2" firstAttribute="leading" secondItem="vZl-SL-XP5" secondAttribute="leading" constant="20" id="UIh-HF-tgE"/>
-                        <constraint firstItem="Hgn-1q-Di2" firstAttribute="centerY" secondItem="vZl-SL-XP5" secondAttribute="centerY" id="aVj-bp-RtA"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -43,9 +29,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="alertButton" destination="Hgn-1q-Di2" id="Qp5-de-vFK"/>
-            </connections>
             <point key="canvasLocation" x="141" y="169.5"/>
         </view>
     </objects>

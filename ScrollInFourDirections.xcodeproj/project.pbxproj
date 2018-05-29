@@ -11,8 +11,6 @@
 		9F118B2520BC54D900C0DC20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B2420BC54D900C0DC20 /* Assets.xcassets */; };
 		9F118B2820BC54D900C0DC20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B2620BC54D900C0DC20 /* LaunchScreen.storyboard */; };
 		9F118B3320BC57FB00C0DC20 /* FourDirectionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B3020BC57FB00C0DC20 /* FourDirectionsCoordinator.swift */; };
-		9F118B3420BC57FB00C0DC20 /* FourDirectionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B3120BC57FB00C0DC20 /* FourDirectionsVC.swift */; };
-		9F118B3520BC57FB00C0DC20 /* FourDirectionsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B3220BC57FB00C0DC20 /* FourDirectionsVC.xib */; };
 		9F118B3720BC581F00C0DC20 /* SimpleCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B3620BC581F00C0DC20 /* SimpleCallback.swift */; };
 		9F118B3A20BC58BD00C0DC20 /* FourDirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B3820BC58BD00C0DC20 /* FourDirectionsView.xib */; };
 		9F118B3B20BC58BD00C0DC20 /* FourDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B3920BC58BD00C0DC20 /* FourDirectionsView.swift */; };
@@ -33,8 +31,6 @@
 		9F118B2720BC54D900C0DC20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F118B2920BC54D900C0DC20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F118B3020BC57FB00C0DC20 /* FourDirectionsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDirectionsCoordinator.swift; sourceTree = "<group>"; };
-		9F118B3120BC57FB00C0DC20 /* FourDirectionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDirectionsVC.swift; sourceTree = "<group>"; };
-		9F118B3220BC57FB00C0DC20 /* FourDirectionsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourDirectionsVC.xib; sourceTree = "<group>"; };
 		9F118B3620BC581F00C0DC20 /* SimpleCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCallback.swift; sourceTree = "<group>"; };
 		9F118B3820BC58BD00C0DC20 /* FourDirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourDirectionsView.xib; sourceTree = "<group>"; };
 		9F118B3920BC58BD00C0DC20 /* FourDirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDirectionsView.swift; sourceTree = "<group>"; };
@@ -96,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				9F118B3020BC57FB00C0DC20 /* FourDirectionsCoordinator.swift */,
-				9F118B3120BC57FB00C0DC20 /* FourDirectionsVC.swift */,
-				9F118B3220BC57FB00C0DC20 /* FourDirectionsVC.xib */,
 				9F118B3920BC58BD00C0DC20 /* FourDirectionsView.swift */,
 				9F118B3820BC58BD00C0DC20 /* FourDirectionsView.xib */,
 			);
@@ -192,7 +186,6 @@
 			files = (
 				9F118B4620BC5CA300C0DC20 /* Localizable.strings in Resources */,
 				9F118B3A20BC58BD00C0DC20 /* FourDirectionsView.xib in Resources */,
-				9F118B3520BC57FB00C0DC20 /* FourDirectionsVC.xib in Resources */,
 				9F118B2820BC54D900C0DC20 /* LaunchScreen.storyboard in Resources */,
 				9F118B2520BC54D900C0DC20 /* Assets.xcassets in Resources */,
 			);
@@ -216,7 +209,6 @@
 				9F118B3720BC581F00C0DC20 /* SimpleCallback.swift in Sources */,
 				9F23DE5D20BD8A9200E9AA36 /* MenuProductsCoordinator.swift in Sources */,
 				9F88B8C720BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift in Sources */,
-				9F118B3420BC57FB00C0DC20 /* FourDirectionsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

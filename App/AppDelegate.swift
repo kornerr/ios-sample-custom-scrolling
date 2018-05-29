@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     ) -> Bool {
         // Create window.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        // Create sample coordinator.
-        self.setupFourDirectionsCoordinator()
+        // Create coordinator.
+        //self.setupFourDirectionsCoordinator()
+        self.setupThreeLevelsCoordinator()
         // Display window.
         self.window!.backgroundColor = UIColor.white
         self.window!.makeKeyAndVisible()
@@ -37,6 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             guard let this = self else { return }
             this.window!.rootViewController = this.fourDirectionsCoordinator.rootVC
         }
+    }
+
+    // MARK: - THREE LEVELS COORDINATOR
+
+    private var threeLevelsCoordinator: ThreeLevelsCoordinator!
+    
+    private func setupThreeLevelsCoordinator()
+    {
+        self.threeLevelsCoordinator = ThreeLevelsCoordinator()
+        self.window!.rootViewController = self.threeLevelsCoordinator.rootVC
     }
 
 }

@@ -19,8 +19,25 @@ class FourDirectionsCoordinator
         let nc = UINavigationController(rootViewController: vc)
         self.rootVC = nc
 
-        // TODO Display products?
+        self.setupItems()
     }
+
+    private func setupItems()
+    {
+        let masterItems = [
+            Item("Clothing", color: .red),
+            Item("Swim", color: .green),
+            Item("Shoes", color: .blue),
+            Item("Handbags", color: .yellow),
+            Item("Accessories", color: .gray),
+        ]
+        // TODO setup details for each master item.
+        self.fourDirectionsView.setItems(masterItems)
+
+    }
+
+
+
 
 }
 

@@ -14,6 +14,16 @@ class FourDirectionsView: UIView
         // At the bottom.
         self.setupCategoryPageControl()
     }
+
+    // MARK: - ITEMS
+
+    private var items = [Item]()
+
+    func setItems(_ items: [Item])
+    {
+        self.items = items
+        // TODO Display items in views
+    }
     
     // MARK: - SECTION PAGE CONTROL
 
@@ -39,6 +49,6 @@ class FourDirectionsView: UIView
         self.categoryPageControl.numberOfPages = 5
         self.categoryPageControlContainerView.embeddedView = self.categoryPageControl
     }
-    
+
 }
 

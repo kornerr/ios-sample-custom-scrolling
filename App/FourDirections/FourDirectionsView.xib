@@ -17,7 +17,31 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-SL-XP5">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <subviews>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXt-mN-eGX">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="568"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="YaW-Ld-Nu5"/>
+                            </constraints>
+                        </view>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZP-Dl-dtJ">
+                            <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="wqs-i9-5ha"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="jZP-Dl-dtJ" secondAttribute="bottom" id="LDJ-PH-aKV"/>
+                        <constraint firstItem="jZP-Dl-dtJ" firstAttribute="leading" secondItem="vZl-SL-XP5" secondAttribute="leading" id="aCz-58-N0K"/>
+                        <constraint firstAttribute="bottom" secondItem="pXt-mN-eGX" secondAttribute="bottom" id="aFU-BW-Gi9"/>
+                        <constraint firstItem="pXt-mN-eGX" firstAttribute="leading" secondItem="vZl-SL-XP5" secondAttribute="leading" id="hla-TB-9b9"/>
+                        <constraint firstItem="pXt-mN-eGX" firstAttribute="top" secondItem="vZl-SL-XP5" secondAttribute="top" id="rVH-lj-FOm"/>
+                        <constraint firstAttribute="trailing" secondItem="jZP-Dl-dtJ" secondAttribute="trailing" id="t3K-f2-RxG"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -29,7 +53,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="141" y="169.5"/>
+            <connections>
+                <outlet property="categoryPageControlContainerView" destination="jZP-Dl-dtJ" id="NfU-H7-VDW"/>
+                <outlet property="sectionPageControlContainerView" destination="pXt-mN-eGX" id="hpa-I5-PqM"/>
+            </connections>
+            <point key="canvasLocation" x="141" y="169"/>
         </view>
     </objects>
 </document>

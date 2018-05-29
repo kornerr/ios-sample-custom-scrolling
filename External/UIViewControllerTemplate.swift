@@ -1,7 +1,7 @@
 
 import UIKit
 
-class UIViewControllerTemplate<MainView: UIView>: UIViewController
+class UIViewControllerTemplate<MainView>: UIViewController
 {
 
     var mainView: MainView!
@@ -11,8 +11,16 @@ class UIViewControllerTemplate<MainView: UIView>: UIViewController
         super.init(nibName: nil, bundle: nil)
         // Keep main view.
         self.mainView = mainView
-        // Embed it.
-        self.view.embeddedView = self.mainView
+        // Embed it if MainView is castable to UIView.
+        if let child = self.mainView as? UIView
+        {
+            self.view.embeddedView = child
+        }
+        // Provide red color to signify error.
+        else
+        {
+            self.view.backgroundColor = .red
+        }
     }
 
     required init?(coder aDecoder: NSCoder)

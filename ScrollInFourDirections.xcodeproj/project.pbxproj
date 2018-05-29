@@ -21,7 +21,9 @@
 		9F118B4320BC58F200C0DC20 /* UITableViewCellTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B3F20BC58F100C0DC20 /* UITableViewCellTemplate.swift */; };
 		9F118B4420BC58F200C0DC20 /* UIView+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */; };
 		9F118B4620BC5CA300C0DC20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B4520BC5CA300C0DC20 /* Localizable.strings */; };
+		9F23DE5D20BD8A9200E9AA36 /* MenuProductsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23DE5C20BD8A9100E9AA36 /* MenuProductsCoordinator.swift */; };
 		9F88B8C720BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C620BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift */; };
+		9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +43,9 @@
 		9F118B3F20BC58F100C0DC20 /* UITableViewCellTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellTemplate.swift; sourceTree = "<group>"; };
 		9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Embed.swift"; sourceTree = "<group>"; };
 		9F118B4520BC5CA300C0DC20 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		9F23DE5C20BD8A9100E9AA36 /* MenuProductsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProductsCoordinator.swift; sourceTree = "<group>"; };
 		9F88B8C620BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLevelsCoordinator.swift; sourceTree = "<group>"; };
+		9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9F118B2F20BC57EC00C0DC20 /* FourDirections */,
+				9F88B8CA20BD8A5800DB1D12 /* MenuProducts */,
 				9F31C92120BD7185009B0C13 /* ThreeLevels */,
 				9F118B1D20BC54D800C0DC20 /* AppDelegate.swift */,
 				9F118B3620BC581F00C0DC20 /* SimpleCallback.swift */,
@@ -102,6 +107,7 @@
 		9F118B3C20BC58E400C0DC20 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */,
 				9F118B3F20BC58F100C0DC20 /* UITableViewCellTemplate.swift */,
 				9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */,
 				9F118B3E20BC58F100C0DC20 /* UIView+NibFile.swift */,
@@ -116,6 +122,14 @@
 				9F88B8C620BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift */,
 			);
 			path = ThreeLevels;
+			sourceTree = "<group>";
+		};
+		9F88B8CA20BD8A5800DB1D12 /* MenuProducts */ = {
+			isa = PBXGroup;
+			children = (
+				9F23DE5C20BD8A9100E9AA36 /* MenuProductsCoordinator.swift */,
+			);
+			path = MenuProducts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F118B4420BC58F200C0DC20 /* UIView+Embed.swift in Sources */,
+				9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */,
 				9F118B3B20BC58BD00C0DC20 /* FourDirectionsView.swift in Sources */,
 				9F118B4220BC58F200C0DC20 /* UIView+NibFile.swift in Sources */,
 				9F118B3320BC57FB00C0DC20 /* FourDirectionsCoordinator.swift in Sources */,
@@ -199,6 +214,7 @@
 				9F118B1E20BC54D800C0DC20 /* AppDelegate.swift in Sources */,
 				9F118B4320BC58F200C0DC20 /* UITableViewCellTemplate.swift in Sources */,
 				9F118B3720BC581F00C0DC20 /* SimpleCallback.swift in Sources */,
+				9F23DE5D20BD8A9200E9AA36 /* MenuProductsCoordinator.swift in Sources */,
 				9F88B8C720BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift in Sources */,
 				9F118B3420BC57FB00C0DC20 /* FourDirectionsVC.swift in Sources */,
 			);

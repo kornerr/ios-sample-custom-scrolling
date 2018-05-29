@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SampleVC: UIViewController
+class FourDirectionsVC: UIViewController
 {
 
     // MARK: - SETUP

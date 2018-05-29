@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SampleCoordinator
+class FourDirectionsCoordinator
 {
 
     // MARK: - SETUP
@@ -16,14 +16,14 @@ class SampleCoordinator
 
     // MARK: - SAMPLE
 
-    private var sampleView: SampleView!
-    private var sampleVC: SampleVC!
+    private var sampleView: FourDirectionsView!
+    private var sampleVC: FourDirectionsVC!
 
     private func setupSample()
     {
         // Create View and VC.
         self.sampleView = UIView.loadFromNib()
-        self.sampleVC = SampleVC()
+        self.sampleVC = FourDirectionsVC()
         self.sampleVC.mainView = self.sampleView
         let nc = UINavigationController(rootViewController: self.sampleVC)
         self.rootVC = nc

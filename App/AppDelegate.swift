@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // Create window.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         // Create sample coordinator.
-        self.setupSampleCoordinator()
+        self.setupFourDirectionsCoordinator()
         // Display window.
         self.window!.backgroundColor = UIColor.white
         self.window!.makeKeyAndVisible()
@@ -25,17 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     // MARK: - SAMPLE COORDINATOR
 
-    private var sampleCoordinator: SampleCoordinator!
+    private var fourDirectionsCoordinator: FourDirectionsCoordinator!
     
-    private func setupSampleCoordinator()
+    private func setupFourDirectionsCoordinator()
     {
-        self.sampleCoordinator = SampleCoordinator()
-        self.window!.rootViewController = self.sampleCoordinator.rootVC
+        self.fourDirectionsCoordinator = FourDirectionsCoordinator()
+        self.window!.rootViewController = self.fourDirectionsCoordinator.rootVC
 
         // If root VC changes, re-assign it to the window.
-        self.sampleCoordinator.rootVCChanged = { [weak self] in
+        self.fourDirectionsCoordinator.rootVCChanged = { [weak self] in
             guard let this = self else { return }
-            this.window!.rootViewController = this.sampleCoordinator.rootVC
+            this.window!.rootViewController = this.fourDirectionsCoordinator.rootVC
         }
     }
 

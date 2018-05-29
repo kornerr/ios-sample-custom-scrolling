@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SampleView: UIView
+class FourDirectionsView: UIView
 {
 
     // MARK: - SETUP

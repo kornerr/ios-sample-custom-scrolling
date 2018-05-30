@@ -9,13 +9,16 @@ class FourDirectionsCoordinator
     var rootVC: UIViewController!
     var rootVCChanged: SimpleCallback?
 
-    private var fourDirectionsView: FourDirectionsView!
+    //private var fourDirectionsView: FourDirectionsView!
+    private var scroll2View: Scroll2View!
 
     init()
     {
         // Create View and VC.
-        self.fourDirectionsView = UIView.loadFromNib()
-        let vc = UIViewControllerTemplate<FourDirectionsView>(mainView: self.fourDirectionsView)
+        //self.fourDirectionsView = UIView.loadFromNib()
+        //let vc = UIViewControllerTemplate<FourDirectionsView>(mainView: self.fourDirectionsView)
+        self.scroll2View = UIView.loadFromNib()
+        let vc = UIViewControllerTemplate<Scroll2View>(mainView: self.scroll2View)
         let nc = UINavigationController(rootViewController: vc)
         self.rootVC = nc
 
@@ -33,7 +36,8 @@ class FourDirectionsCoordinator
             MItem("Accessories", color: .gray),
         ]
         // TODO setup detail items.
-        self.fourDirectionsView.setItems(items)
+        //self.fourDirectionsView.setItems(items)
+        self.scroll2View.setItems(items)
 
     }
 

@@ -30,6 +30,7 @@ class FourDirectionsView: UIView
     // MARK: - ITEM BACKGROUNDS
     
     @IBOutlet private var backgroundView: UIView!
+    @IBOutlet private var foregroundView: UIView!
     private var scrollView: UIView!
     private var backgroundViews = [UIView]()
 
@@ -37,6 +38,13 @@ class FourDirectionsView: UIView
     {
         self.scrollView = UIView()
         self.backgroundView.addSubview(self.scrollView)
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
+        self.foregroundView.addGestureRecognizer(panGR)
+    }
+
+    @objc func pan(_ gestureRecognizer: UIPanGestureRecognizer)
+    {
+        NSLog("panning")
     }
 
     private func generateBackgroundViews(for items: [FourDirectionsMasterItem], withSize size: CGSize)
@@ -58,6 +66,9 @@ class FourDirectionsView: UIView
 
             // Add to superview.
             self.scrollView.addSubview(view)
+            // NOTE Please note that scrollView's frame does not contain the frames
+            // NOTE of all its children. We just use it to move all children
+            // NOTE at once.
 
             // Offset following views.
             let newY = frame.origin.y + frame.size.height
@@ -65,7 +76,6 @@ class FourDirectionsView: UIView
         }
     }
 
-    // MARK: - MOVE SCROLL VIEW
     
     // MARK: - SECTION PAGE CONTROL
 

@@ -43,11 +43,19 @@
                         <constraint firstAttribute="trailing" secondItem="jZP-Dl-dtJ" secondAttribute="trailing" id="t3K-f2-RxG"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEZ-Ke-HEX">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="aEZ-Ke-HEX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3CC-ur-JXU"/>
+                <constraint firstAttribute="bottom" secondItem="aEZ-Ke-HEX" secondAttribute="bottom" id="CtT-s6-gUN"/>
                 <constraint firstAttribute="bottom" secondItem="vZl-SL-XP5" secondAttribute="bottom" id="dzT-VF-0Hb"/>
+                <constraint firstItem="aEZ-Ke-HEX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eD6-kZ-hmN"/>
                 <constraint firstItem="vZl-SL-XP5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k5Y-ND-GKT"/>
+                <constraint firstAttribute="trailing" secondItem="aEZ-Ke-HEX" secondAttribute="trailing" id="nPc-Ag-qpG"/>
                 <constraint firstAttribute="trailing" secondItem="vZl-SL-XP5" secondAttribute="trailing" id="vtq-8N-9QE"/>
                 <constraint firstItem="vZl-SL-XP5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wcj-XU-8Iv"/>
             </constraints>
@@ -56,6 +64,7 @@
             <connections>
                 <outlet property="backgroundView" destination="vZl-SL-XP5" id="6FF-JI-tLm"/>
                 <outlet property="categoryPageControlContainerView" destination="jZP-Dl-dtJ" id="NfU-H7-VDW"/>
+                <outlet property="foregroundView" destination="aEZ-Ke-HEX" id="co2-Zd-vfH"/>
                 <outlet property="sectionPageControlContainerView" destination="pXt-mN-eGX" id="hpa-I5-PqM"/>
             </connections>
             <point key="canvasLocation" x="141" y="169"/>

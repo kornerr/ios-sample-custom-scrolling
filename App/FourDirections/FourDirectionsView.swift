@@ -40,11 +40,50 @@ class FourDirectionsView: UIView
         self.backgroundView.addSubview(self.scrollView)
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
         self.foregroundView.addGestureRecognizer(panGR)
+        self.vertScrollReport = { [weak self] in
+            guard let this = self else { return }
+            NSLog("TODO scrolling vertically on delta '\(this.vertScrollDelta)'")
+            var frame = this.scrollView.frame
+            frame.origin.y += this.vertScrollDelta
+            this.scrollView.frame = frame
+        }
     }
 
-    @objc func pan(_ gestureRecognizer: UIPanGestureRecognizer)
+    private var vertScrollReport: SimpleCallback?
+    private var vertScrollDelta: CGFloat = 0
+    private var lastTranslation = CGPoint(x: 0, y: 0)
+
+    @objc func pan(_ recognizer: UIPanGestureRecognizer)
     {
-        NSLog("panning")
+        guard
+            let piece = recognizer.view 
+        else
+        {
+            NSLog("Gesture recognizer has no view. Cannot proceed")
+            return
+        }
+        let translation = recognizer.translation(in: piece.superview)
+        if recognizer.state == .began
+        {
+            NSLog("began")
+            self.vertScrollDelta = 0
+            self.lastTranslation = CGPoint(x: 0, y: 0)
+        }
+        if recognizer.state != .cancelled
+        {
+            //NSLog("translation by '\(translation.x)'/'\(translation.y)'")
+            let delta = translation.y - self.lastTranslation.y
+            self.vertScrollDelta = delta
+            if let report = self.vertScrollReport
+            {
+                report()
+            }
+            self.lastTranslation = translation
+        }
+        else
+        {
+            NSLog("cancelled")
+        }
     }
 
     private func generateBackgroundViews(for items: [FourDirectionsMasterItem], withSize size: CGSize)

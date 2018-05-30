@@ -47,10 +47,12 @@ class FourDirectionsView: UIView
             frame.origin.y += this.vertScrollDelta
             this.scrollView.frame = frame
         }
+        /*
         self.vertScrollFinishReport = { [weak self] in
             guard let this = self else { return }
             NSLog("Finished scrolling")
         }
+        */
     }
 
     private var vertScrollReport: SimpleCallback?

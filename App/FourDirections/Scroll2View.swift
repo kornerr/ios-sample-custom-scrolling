@@ -1,6 +1,8 @@
 
 import UIKit
 
+private let ITEM_HEIGHT: CGFloat = 200
+
 class Scroll2View: UIView
 {
 
@@ -20,12 +22,15 @@ class Scroll2View: UIView
     {
         self.items = items
         // TODO Provide size from actual screen size (80% height, 100% width)
-        let size = CGSize(width: 320, height: 320)
+        let size = CGSize(width: 320, height: ITEM_HEIGHT)
         self.generateBackgroundViews(for: self.items, withSize: size)
         // TODO Display items in views
     }
 
     // MARK: - ITEM VIEWS
+    
+    @IBOutlet private var backgroundView: UIView!
+    @IBOutlet private var foregroundView: UIView!
     
     private var scrollView: UIScrollView!
     private var itemViews = [UIView]()
@@ -33,25 +38,39 @@ class Scroll2View: UIView
     private func setupScrolling()
     {
         self.scrollView = UIScrollView()
-        self.embeddedView = self.scrollView
-        let panGR = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
+        self.backgroundView.addSubview(self.scrollView)
+        // Use smaller scroll view size to have paging based on item size lesser than scroll view bounds.
+        self.scrollView.isPagingEnabled = true
+        let frame = CGRect(x: 0, y: 0, width: 320, height: ITEM_HEIGHT)
+        self.scrollView.frame = frame
+        // Make sure we don't clip subviews.
+        self.scrollView.clipsToBounds = false
+        // Add scroll view's pan guesture recognizer to its parent.
+        self.backgroundView.addGestureRecognizer(self.scrollView.panGestureRecognizer)
+        // Hide scroll bar.
+        self.scrollView.showsVerticalScrollIndicator = false
 
-        //self.scrollView.addGestureRecognizer(panGR)
-        //self.scrollView.isUserInteractionEnabled = false
+        /*
+        // Setup manual scrolling.
+        let panGR = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
+        self.foregroundView.addGestureRecognizer(panGR)
 
         self.vertScrollReport = { [weak self] in
             guard let this = self else { return }
-            NSLog("Vertical scroll velocity: '\(this.vertScrollVelocity)'")
-            /*
-            var frame = this.scrollView.frame
-            frame.origin.y += this.vertScrollDelta
-            this.scrollView.frame = frame
-            */
+            NSLog("Vertical scroll delta: '\(this.vertScrollDelta)'")
+            var offset = this.scrollView.contentOffset
+            NSLog("Offset before: '\(offset)'")
+            offset.y -= this.vertScrollDelta
+            NSLog("Offset after: '\(offset)'")
+            this.scrollView.setContentOffset(offset, animated: false)
         }
+        */
+        /*
         self.vertScrollFinishReport = { [weak self] in
             guard let this = self else { return }
             NSLog("Finished scrolling")
         }
+        */
     }
 
     private var vertScrollReport: SimpleCallback?
@@ -118,7 +137,8 @@ class Scroll2View: UIView
         }
         self.backgroundViews = []
         // Generate new background views.
-        var frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let startY = ITEM_HEIGHT / 2.0
+        var frame = CGRect(x: 0, y: startY, width: size.width, height: size.height)
         for item in items
         {
             let view = UIView(frame: frame)

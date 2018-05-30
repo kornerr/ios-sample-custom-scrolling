@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,9 +14,40 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Scroll2View" customModule="ScrollInFourDirections" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0x-Zp-YUx">
+                    <rect key="frame" x="0.0" y="84" width="320" height="400"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="ucJ-z3-tTc"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEm-dy-JJj">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pEm-dy-JJj" secondAttribute="trailing" id="3BK-N7-JKi"/>
+                <constraint firstItem="E0x-Zp-YUx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6H4-Ik-ajd"/>
+                <constraint firstItem="E0x-Zp-YUx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EvG-XE-ja0"/>
+                <constraint firstItem="pEm-dy-JJj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J59-Qb-hA5"/>
+                <constraint firstAttribute="trailing" secondItem="E0x-Zp-YUx" secondAttribute="trailing" id="dUf-zu-Kbz"/>
+                <constraint firstAttribute="bottom" secondItem="pEm-dy-JJj" secondAttribute="bottom" id="yfi-A4-qYo"/>
+                <constraint firstItem="pEm-dy-JJj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yqB-I0-O3Y"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="pEm-dy-JJj"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="backgroundView" destination="E0x-Zp-YUx" id="D7g-qg-fuk"/>
+                <outlet property="foregroundView" destination="pEm-dy-JJj" id="dvw-Uh-yq5"/>
+            </connections>
             <point key="canvasLocation" x="141" y="169"/>
         </view>
     </objects>

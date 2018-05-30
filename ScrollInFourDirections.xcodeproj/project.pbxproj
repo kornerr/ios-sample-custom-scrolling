@@ -20,7 +20,8 @@
 		9F118B4420BC58F200C0DC20 /* UIView+Embed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */; };
 		9F118B4620BC5CA300C0DC20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B4520BC5CA300C0DC20 /* Localizable.strings */; };
 		9F23DE5D20BD8A9200E9AA36 /* MenuProductsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23DE5C20BD8A9100E9AA36 /* MenuProductsCoordinator.swift */; };
-		9F23DE5F20BDB18800E9AA36 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23DE5E20BDB18800E9AA36 /* Item.swift */; };
+		9F32CD3D20BEC3B5007BC193 /* FourDirectionsDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F32CD3B20BEC3B4007BC193 /* FourDirectionsDetailItem.swift */; };
+		9F32CD3E20BEC3B5007BC193 /* FourDirectionsMasterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F32CD3C20BEC3B4007BC193 /* FourDirectionsMasterItem.swift */; };
 		9F88B8C720BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C620BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift */; };
 		9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +42,8 @@
 		9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Embed.swift"; sourceTree = "<group>"; };
 		9F118B4520BC5CA300C0DC20 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		9F23DE5C20BD8A9100E9AA36 /* MenuProductsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProductsCoordinator.swift; sourceTree = "<group>"; };
-		9F23DE5E20BDB18800E9AA36 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		9F32CD3B20BEC3B4007BC193 /* FourDirectionsDetailItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDirectionsDetailItem.swift; sourceTree = "<group>"; };
+		9F32CD3C20BEC3B4007BC193 /* FourDirectionsMasterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDirectionsMasterItem.swift; sourceTree = "<group>"; };
 		9F88B8C620BD71AE00DB1D12 /* ThreeLevelsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLevelsCoordinator.swift; sourceTree = "<group>"; };
 		9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +98,8 @@
 				9F118B3020BC57FB00C0DC20 /* FourDirectionsCoordinator.swift */,
 				9F118B3920BC58BD00C0DC20 /* FourDirectionsView.swift */,
 				9F118B3820BC58BD00C0DC20 /* FourDirectionsView.xib */,
-				9F23DE5E20BDB18800E9AA36 /* Item.swift */,
+				9F32CD3B20BEC3B4007BC193 /* FourDirectionsDetailItem.swift */,
+				9F32CD3C20BEC3B4007BC193 /* FourDirectionsMasterItem.swift */,
 			);
 			path = FourDirections;
 			sourceTree = "<group>";
@@ -205,10 +208,11 @@
 				9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */,
 				9F118B3B20BC58BD00C0DC20 /* FourDirectionsView.swift in Sources */,
 				9F118B4220BC58F200C0DC20 /* UIView+NibFile.swift in Sources */,
-				9F23DE5F20BDB18800E9AA36 /* Item.swift in Sources */,
 				9F118B3320BC57FB00C0DC20 /* FourDirectionsCoordinator.swift in Sources */,
 				9F118B4120BC58F200C0DC20 /* UIViewControllerTemplate.swift in Sources */,
+				9F32CD3E20BEC3B5007BC193 /* FourDirectionsMasterItem.swift in Sources */,
 				9F118B1E20BC54D800C0DC20 /* AppDelegate.swift in Sources */,
+				9F32CD3D20BEC3B5007BC193 /* FourDirectionsDetailItem.swift in Sources */,
 				9F118B4320BC58F200C0DC20 /* UITableViewCellTemplate.swift in Sources */,
 				9F118B3720BC581F00C0DC20 /* SimpleCallback.swift in Sources */,
 				9F23DE5D20BD8A9200E9AA36 /* MenuProductsCoordinator.swift in Sources */,

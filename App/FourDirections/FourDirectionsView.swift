@@ -17,9 +17,9 @@ class FourDirectionsView: UIView
 
     // MARK: - ITEMS
 
-    private var items = [Item]()
+    private var items = [FourDirectionsMasterItem]()
 
-    func setItems(_ items: [Item])
+    func setItems(_ items: [FourDirectionsMasterItem])
     {
         self.items = items
         // TODO Display items in views

@@ -24,15 +24,16 @@ class FourDirectionsCoordinator
 
     private func setupItems()
     {
-        let masterItems = [
-            Item("Clothing", color: .red),
-            Item("Swim", color: .green),
-            Item("Shoes", color: .blue),
-            Item("Handbags", color: .yellow),
-            Item("Accessories", color: .gray),
+        typealias MItem = FourDirectionsMasterItem
+        let items = [
+            MItem("Clothing", color: .red),
+            MItem("Swim", color: .green),
+            MItem("Shoes", color: .blue),
+            MItem("Handbags", color: .yellow),
+            MItem("Accessories", color: .gray),
         ]
-        // TODO setup details for each master item.
-        self.fourDirectionsView.setItems(masterItems)
+        // TODO setup detail items.
+        self.fourDirectionsView.setItems(items)
 
     }
 

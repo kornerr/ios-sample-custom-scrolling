@@ -54,6 +54,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backgroundView" destination="vZl-SL-XP5" id="6FF-JI-tLm"/>
                 <outlet property="categoryPageControlContainerView" destination="jZP-Dl-dtJ" id="NfU-H7-VDW"/>
                 <outlet property="sectionPageControlContainerView" destination="pXt-mN-eGX" id="hpa-I5-PqM"/>
             </connections>

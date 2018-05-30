@@ -42,15 +42,21 @@ class FourDirectionsView: UIView
         self.foregroundView.addGestureRecognizer(panGR)
         self.vertScrollReport = { [weak self] in
             guard let this = self else { return }
-            NSLog("TODO scrolling vertically on delta '\(this.vertScrollDelta)'")
+            NSLog("Vertical scroll velocity: '\(this.vertScrollVelocity)'")
             var frame = this.scrollView.frame
             frame.origin.y += this.vertScrollDelta
             this.scrollView.frame = frame
         }
+        self.vertScrollFinishReport = { [weak self] in
+            guard let this = self else { return }
+            NSLog("Finished scrolling")
+        }
     }
 
     private var vertScrollReport: SimpleCallback?
+    private var vertScrollFinishReport: SimpleCallback?
     private var vertScrollDelta: CGFloat = 0
+    private var vertScrollVelocity: CGFloat = 0
     private var lastTranslation = CGPoint(x: 0, y: 0)
 
     @objc func pan(_ recognizer: UIPanGestureRecognizer)
@@ -72,8 +78,13 @@ class FourDirectionsView: UIView
         if recognizer.state != .cancelled
         {
             //NSLog("translation by '\(translation.x)'/'\(translation.y)'")
+            // Delta.
             let delta = translation.y - self.lastTranslation.y
             self.vertScrollDelta = delta
+            // Velocity.
+            let velocity = recognizer.velocity(in: piece.superview)
+            self.vertScrollVelocity = velocity.y
+            // Report.
             if let report = self.vertScrollReport
             {
                 report()
@@ -83,6 +94,15 @@ class FourDirectionsView: UIView
         else
         {
             NSLog("cancelled")
+        }
+        if recognizer.state == .ended
+        {
+            // Report.
+            if let report = self.vertScrollFinishReport
+            {
+                report()
+            }
+            NSLog("ended")
         }
     }
 

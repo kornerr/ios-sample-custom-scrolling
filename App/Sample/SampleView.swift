@@ -1,6 +1,7 @@
 
 import UIKit
 
+// Internal logging function.
 private func SAMPLE_VIEW_LOG(_ message: String)
 {
     NSLog("SampleView \(message)")
@@ -22,17 +23,26 @@ class SampleView: UIView
     // MARK: - SCROLLING
 
     private var scrolling: Scrolling!
+    private var scrollingBounds: ScrollingBounds!
     
     private func setupScrolling()
     {
         self.scrolling = Scrolling(trackedView: self.gestureView)
+        self.scrollingBounds =
+            ScrollingBounds(viewportHeight: 400, contentHeight: 800)
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
-            SAMPLE_VIEW_LOG("Vertical delta: '\(this.scrolling.verticalDelta)'")
-            SAMPLE_VIEW_LOG("Vertical velocity: '\(this.scrolling.verticalVelocity)'")
+            //SAMPLE_VIEW_LOG("Vertical delta: '\(this.scrolling.verticalDelta)'")
+            this.scrollingBounds.setContentOffset(delta: this.scrolling.verticalDelta)
         }
-        self.scrolling.verticalReport = {
-            SAMPLE_VIEW_LOG("Finished vertical scrolling")
+        self.scrolling.verticalFinishReport = {
+            //SAMPLE_VIEW_LOG("Finished vertical scrolling")
+        }
+
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            SAMPLE_VIEW_LOG("Content offset: '\(this.scrollingBounds.contentOffset)'")
+            // TODO Apply content offset to some view
         }
     }
 

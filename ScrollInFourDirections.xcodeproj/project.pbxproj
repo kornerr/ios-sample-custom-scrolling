@@ -23,6 +23,7 @@
 		9F32CD3E20BEC3B5007BC193 /* MasterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F32CD3C20BEC3B4007BC193 /* MasterItem.swift */; };
 		9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */; };
 		9F944F9220C018F90026D092 /* Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F944F9120C018F80026D092 /* Scrolling.swift */; };
+		9F944F9420C02C460026D092 /* ScrollingBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F944F9320C02C460026D092 /* ScrollingBounds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		9F32CD3C20BEC3B4007BC193 /* MasterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterItem.swift; sourceTree = "<group>"; };
 		9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedTableView.swift; sourceTree = "<group>"; };
 		9F944F9120C018F80026D092 /* Scrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrolling.swift; sourceTree = "<group>"; };
+		9F944F9320C02C460026D092 /* ScrollingBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingBounds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */,
 				9F944F9120C018F80026D092 /* Scrolling.swift */,
+				9F944F9320C02C460026D092 /* ScrollingBounds.swift */,
 				9F118B3F20BC58F100C0DC20 /* UITableViewCellTemplate.swift */,
 				9F118B4020BC58F200C0DC20 /* UIView+Embed.swift */,
 				9F118B3E20BC58F100C0DC20 /* UIView+NibFile.swift */,
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F944F9420C02C460026D092 /* ScrollingBounds.swift in Sources */,
 				9F944F9220C018F90026D092 /* Scrolling.swift in Sources */,
 				9F118B4420BC58F200C0DC20 /* UIView+Embed.swift in Sources */,
 				9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */,

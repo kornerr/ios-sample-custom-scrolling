@@ -25,7 +25,6 @@ class SampleCoordinator
     private func setupItems()
     {
         typealias MItem = MasterItem
-        /*
         let items = [
             MItem("Clothing", color: .red),
             MItem("Swim", color: .green),
@@ -33,8 +32,7 @@ class SampleCoordinator
             MItem("Handbags", color: .yellow),
             MItem("Accessories", color: .gray),
         ]
- */
-        //self.sampleView.setItems(items)
+        self.sampleView.setItems(items)
 
     }
 

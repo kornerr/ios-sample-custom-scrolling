@@ -7,6 +7,13 @@ private func SAMPLE_VIEW_LOG(_ message: String)
     NSLog("SampleView \(message)")
 }
 
+private let VIEWPORT_HEIGHT: CGFloat = 300
+private let CONTENT_HEIGHT: CGFloat = 800
+
+private let ITEM_HEIGHT: CGFloat = 200
+
+private let SCREEN_WIDTH: CGFloat = 320
+
 class SampleView: UIView
 {
 
@@ -18,30 +25,10 @@ class SampleView: UIView
     {
         super.awakeFromNib()
         self.setupScrolling()
-        self.setupItemsView()
+        //self.setupContentView()
 
-        // Scroll 
-        self.scrollingBounds.contentOffsetReport = { [weak self] in
-            guard let this = self else { return }
-            //SAMPLE_VIEW_LOG("Content offset: '\(this.scrollingBounds.contentOffset)'")
-            var frame = this.contentView.frame
-            frame.origin.y = this.scrollingBounds.contentOffset
-            this.contentView.frame = frame
-        }
     }
 
-    // MARK: - ITEMS
-
-    @IBOutlet private var itemsView: UIView!
-    private var contentView: UIView!
-
-    private func setupItemsView()
-    {
-        self.contentView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 800))
-        self.contentView.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
-        self.itemsView.addSubview(self.contentView)
-    }
-    
     // MARK: - SCROLLING
 
     private var scrolling: Scrolling!
@@ -51,7 +38,10 @@ class SampleView: UIView
     {
         self.scrolling = Scrolling(trackedView: self.gestureView)
         self.scrollingBounds =
-            ScrollingBounds(viewportHeight: 300, contentHeight: 800)
+            ScrollingBounds(
+                viewportHeight: VIEWPORT_HEIGHT,
+                contentHeight: CONTENT_HEIGHT
+            )
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
             this.scrollingBounds.setContentOffset(delta: this.scrolling.verticalDelta)
@@ -62,7 +52,26 @@ class SampleView: UIView
         */
     }
 
-    /*
+    // MARK: - CONTENT VIEW
+
+    private var contentView: UIView!
+
+    private func setupContentView()
+    {
+        self.contentView = UIView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: CONTENT_HEIGHT))
+        self.contentView.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
+        self.itemsView.addSubview(self.contentView)
+
+        // Scroll content view.
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            //SAMPLE_VIEW_LOG("Content offset: '\(this.scrollingBounds.contentOffset)'")
+            var frame = this.contentView.frame
+            frame.origin.y = this.scrollingBounds.contentOffset
+            this.contentView.frame = frame
+        }
+    }
+    
     // MARK: - ITEMS
 
     private var items = [MasterItem]()
@@ -71,45 +80,36 @@ class SampleView: UIView
     {
         self.items = items
         // TODO Provide size from actual screen size (80% height, 100% width)
-        let size = CGSize(width: 320, height: 320)
-        self.generateBackgroundViews(for: self.items, withSize: size)
+        let size = CGSize(width: SCREEN_WIDTH, height: ITEM_HEIGHT)
+        self.generateItemViews(for: self.items, withSize: size)
         // TODO Display items in views
     }
 
-    // MARK: - ITEM BACKGROUNDS
-    
-    private var scrollView: UIView!
-    private var backgroundViews = [UIView]()
+    @IBOutlet private var itemsView: UIView!
 
-    private func generateBackgroundViews(for items: [MasterItem], withSize size: CGSize)
+    // MARK: - ITEM VIEWS
+    
+    private var itemViews = [UIView]()
+
+    private func generateItemViews(for items: [MasterItem], withSize size: CGSize)
     {
-        // Remove previously generated background views from superview.
-        for view in self.backgroundViews
+        // Remove previously generated views.
+        for view in self.itemViews
         {
             view.removeFromSuperview()
         }
-        self.backgroundViews = []
-        // Generate new background views.
-        var frame = CGRect(x: 50, y: 0, width: size.width, height: size.height)
+        self.itemViews = []
+
+        // Generate new views.
+        let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         for item in items
         {
             let view = UIView(frame: frame)
-
             view.backgroundColor = item.color
-            self.backgroundViews.append(view)
-
-            // Add to superview.
-            self.scrollView.addSubview(view)
-            // NOTE Please note that scrollView's frame does not contain the frames
-            // NOTE of all its children. We just use it to move all children
-            // NOTE at once.
-
-            // Offset following views.
-            let newY = frame.origin.y + frame.size.height
-            frame = CGRect(x: frame.origin.x, y: newY, width: frame.size.width, height: frame.size.height)
+            self.itemViews.append(view)
+            self.itemsView.addSubview(view)
         }
     }
-    */
 
 }
 

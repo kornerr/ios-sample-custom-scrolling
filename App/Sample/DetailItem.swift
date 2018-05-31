@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct FourDirectionsDetailItem
+struct DetailItem
 {
     var id = ""
     var title = ""

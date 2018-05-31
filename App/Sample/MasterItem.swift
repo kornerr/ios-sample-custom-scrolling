@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct FourDirectionsMasterItem
+struct MasterItem
 {
     var id: String
     var title = ""

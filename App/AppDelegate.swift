@@ -25,11 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     // MARK: - SAMPLE COORDINATOR
 
-    private var fourDirectionsCoordinator: FourDirectionsCoordinator!
+    private var fourDirectionsCoordinator: SampleCoordinator!
     
     private func setupFourDirectionsCoordinator()
     {
-        self.fourDirectionsCoordinator = FourDirectionsCoordinator()
+        self.fourDirectionsCoordinator = SampleCoordinator()
         self.window!.rootViewController = self.fourDirectionsCoordinator.rootVC
 
         // If root VC changes, re-assign it to the window.

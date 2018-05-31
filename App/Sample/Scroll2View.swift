@@ -16,9 +16,9 @@ class Scroll2View: UIView
 
     // MARK: - ITEMS
 
-    private var items = [FourDirectionsMasterItem]()
+    private var items = [MasterItem]()
 
-    func setItems(_ items: [FourDirectionsMasterItem])
+    func setItems(_ items: [MasterItem])
     {
         self.items = items
         // TODO Provide size from actual screen size (80% height, 100% width)
@@ -128,7 +128,7 @@ class Scroll2View: UIView
 
     private var backgroundViews = [UIView]()
 
-    private func generateBackgroundViews(for items: [FourDirectionsMasterItem], withSize size: CGSize)
+    private func generateBackgroundViews(for items: [MasterItem], withSize size: CGSize)
     {
         // Remove previously generated background views from superview.
         for view in self.backgroundViews

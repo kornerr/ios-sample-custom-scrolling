@@ -16,8 +16,8 @@ class SampleCoordinator
         // Create View and VC.
         self.sampleView = UIView.loadFromNib()
         let vc = UIViewControllerTemplate<SampleView>(mainView: self.sampleView)
-        let nc = UINavigationController(rootViewController: vc)
-        self.rootVC = nc
+        //let nc = UINavigationController(rootViewController: vc)
+        self.rootVC = vc
 
         self.setupItems()
     }

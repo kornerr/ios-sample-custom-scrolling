@@ -38,7 +38,7 @@ class SampleView: UIView
     private func setupItemsView()
     {
         self.contentView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 800))
-        self.contentView.backgroundColor = .gray
+        self.contentView.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
         self.itemsView.addSubview(self.contentView)
     }
     
@@ -51,7 +51,7 @@ class SampleView: UIView
     {
         self.scrolling = Scrolling(trackedView: self.gestureView)
         self.scrollingBounds =
-            ScrollingBounds(viewportHeight: 400, contentHeight: 800)
+            ScrollingBounds(viewportHeight: 300, contentHeight: 800)
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
             this.scrollingBounds.setContentOffset(delta: this.scrolling.verticalDelta)

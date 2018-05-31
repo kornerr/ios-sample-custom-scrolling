@@ -44,7 +44,7 @@ class Scrolling
         // Begin.
         if recognizer.state == .began
         {
-            SCROLLING_LOG("Begin")
+            //SCROLLING_LOG("Begin")
             self.resetVerticalScrolling()
             self.lastTranslation = CGPoint(x: 0, y: 0)
         }
@@ -70,7 +70,7 @@ class Scrolling
         // Finish.
         if recognizer.state == .ended
         {
-            SCROLLING_LOG("Finish")
+            //SCROLLING_LOG("Finish")
             let none = CGPoint(x: 0, y: 0)
             self.reportVerticalScrolling(none, none)
             self.reportVerticalScrollingFinish()

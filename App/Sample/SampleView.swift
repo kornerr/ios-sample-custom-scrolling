@@ -119,54 +119,25 @@ class SampleView: UIView
 
     private func setupItemsLayout()
     {
-        let center = VIEWPORT_HEIGHT / 2.0
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
             let offset = this.scrollingBounds.contentOffset
-            let pageIdFactor = -offset / PAGE_SCROLL_SIZE
-            let pageId = Int(pageIdFactor) + 1
-            let prevPageId = pageId - 1
-            let nextPageId = pageId + 1
+            SAMPLE_VIEW_LOG("Offset: '\(offset)'")
+            let position = -offset / PAGE_SCROLL_SIZE + 1
+            SAMPLE_VIEW_LOG("Position: '\(position)'")
+            let pageId = Int(round(position))
+            SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
 
-            // Make all item views invisible.
-            for view in this.itemViews
+            let height = ITEM_COLLAPSED_HEIGHT
+            for id in 0..<this.itemViews.count
             {
-                view.isHidden = true
+                let view = this.itemViews[id]
+                var frame = view.frame
+                frame.size.height = height
+                view.frame = frame
             }
 
-            let proximity = CGFloat(pageId) - pageIdFactor
-            SAMPLE_VIEW_LOG("Offset: '\(offset)' Proximity: '\(proximity)' PageId: '\(pageId)' PageIdFactor: '\(pageIdFactor)'")
-
-            let pageIdView = this.itemViews[pageId]
-            let nextPageIdView = this.itemViews[nextPageId]
-            let prevPageIdView = this.itemViews[prevPageId]
-            pageIdView.isHidden = false
-            nextPageIdView.isHidden = false
-            prevPageIdView.isHidden = false
-
-            // Close to current page id?
-            if (proximity > 0.5)
-            {
-                var frame = pageIdView.frame
-                frame.size.height = ITEM_HEIGHT
-                frame.origin.y = center + proximity * 10
-                pageIdView.frame = frame
-            }
-            // Close to the next page id?
-            else
-            {
-                var frame = nextPageIdView.frame
-                frame.size.height = ITEM_HEIGHT * proximity
-                frame.origin.y = center * 2 + proximity * 10
-                nextPageIdView.frame = frame
-            }
-            // TODO Detect center proximity (selected id)
-            /*
-            var frame = this.contentView.frame
-            frame.origin.y = this.scrollingBounds.contentOffset
-            this.contentView.frame = frame
-            */
         }
     }
 

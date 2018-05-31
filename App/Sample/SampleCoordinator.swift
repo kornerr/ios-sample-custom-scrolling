@@ -26,11 +26,13 @@ class SampleCoordinator
     {
         typealias MItem = MasterItem
         let items = [
-            MItem("Clothing", color: .red),
+            MItem("EDGE-TOP", color: .red),
+            MItem("Clothing", color: .magenta),
             MItem("Swim", color: .green),
             MItem("Shoes", color: .blue),
             MItem("Handbags", color: .yellow),
-            MItem("Accessories", color: .gray),
+            MItem("Accessories", color: .cyan),
+            MItem("EDGE-BOTTOM", color: .gray),
         ]
         self.sampleView.setItems(items)
 

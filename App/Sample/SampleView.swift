@@ -7,12 +7,15 @@ private func SAMPLE_VIEW_LOG(_ message: String)
     NSLog("SampleView \(message)")
 }
 
-private let VIEWPORT_HEIGHT: CGFloat = 300
-private let CONTENT_HEIGHT: CGFloat = 800
-
 private let ITEM_HEIGHT: CGFloat = 200
+private let ITEM_COLLAPSED_HEIGHT: CGFloat = 50
 
 private let SCREEN_WIDTH: CGFloat = 320
+
+private let VIEWPORT_HEIGHT: CGFloat = 300
+private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT + ITEM_COLLAPSED_HEIGHT * 6 // items' count - 1
+
+private let PAGE_SCROLL_SIZE: CGFloat = ITEM_COLLAPSED_HEIGHT
 
 class SampleView: UIView
 {
@@ -26,6 +29,7 @@ class SampleView: UIView
         super.awakeFromNib()
         self.setupScrolling()
         //self.setupContentView()
+        self.setupItemsLayout()
 
     }
 
@@ -108,6 +112,61 @@ class SampleView: UIView
             view.backgroundColor = item.color
             self.itemViews.append(view)
             self.itemsView.addSubview(view)
+        }
+    }
+
+    // MARK: - ITEMS LAYOUT
+
+    private func setupItemsLayout()
+    {
+        let center = VIEWPORT_HEIGHT / 2.0
+        // Scroll items.
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            let offset = this.scrollingBounds.contentOffset
+            let pageIdFactor = -offset / PAGE_SCROLL_SIZE
+            let pageId = Int(pageIdFactor) + 1
+            let prevPageId = pageId - 1
+            let nextPageId = pageId + 1
+
+            // Make all item views invisible.
+            for view in this.itemViews
+            {
+                view.isHidden = true
+            }
+
+            let proximity = CGFloat(pageId) - pageIdFactor
+            SAMPLE_VIEW_LOG("Offset: '\(offset)' Proximity: '\(proximity)' PageId: '\(pageId)' PageIdFactor: '\(pageIdFactor)'")
+
+            let pageIdView = this.itemViews[pageId]
+            let nextPageIdView = this.itemViews[nextPageId]
+            let prevPageIdView = this.itemViews[prevPageId]
+            pageIdView.isHidden = false
+            nextPageIdView.isHidden = false
+            prevPageIdView.isHidden = false
+
+            // Close to current page id?
+            if (proximity > 0.5)
+            {
+                var frame = pageIdView.frame
+                frame.size.height = ITEM_HEIGHT
+                frame.origin.y = center + proximity * 10
+                pageIdView.frame = frame
+            }
+            // Close to the next page id?
+            else
+            {
+                var frame = nextPageIdView.frame
+                frame.size.height = ITEM_HEIGHT * proximity
+                frame.origin.y = center * 2 + proximity * 10
+                nextPageIdView.frame = frame
+            }
+            // TODO Detect center proximity (selected id)
+            /*
+            var frame = this.contentView.frame
+            frame.origin.y = this.scrollingBounds.contentOffset
+            this.contentView.frame = frame
+            */
         }
     }
 

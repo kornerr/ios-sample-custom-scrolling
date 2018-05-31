@@ -18,6 +18,28 @@ class SampleView: UIView
     {
         super.awakeFromNib()
         self.setupScrolling()
+        self.setupItemsView()
+
+        // Scroll 
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            //SAMPLE_VIEW_LOG("Content offset: '\(this.scrollingBounds.contentOffset)'")
+            var frame = this.contentView.frame
+            frame.origin.y = this.scrollingBounds.contentOffset
+            this.contentView.frame = frame
+        }
+    }
+
+    // MARK: - ITEMS
+
+    @IBOutlet private var itemsView: UIView!
+    private var contentView: UIView!
+
+    private func setupItemsView()
+    {
+        self.contentView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 800))
+        self.contentView.backgroundColor = .gray
+        self.itemsView.addSubview(self.contentView)
     }
     
     // MARK: - SCROLLING
@@ -32,18 +54,12 @@ class SampleView: UIView
             ScrollingBounds(viewportHeight: 400, contentHeight: 800)
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
-            //SAMPLE_VIEW_LOG("Vertical delta: '\(this.scrolling.verticalDelta)'")
             this.scrollingBounds.setContentOffset(delta: this.scrolling.verticalDelta)
         }
+        /*
         self.scrolling.verticalFinishReport = {
-            //SAMPLE_VIEW_LOG("Finished vertical scrolling")
         }
-
-        self.scrollingBounds.contentOffsetReport = { [weak self] in
-            guard let this = self else { return }
-            SAMPLE_VIEW_LOG("Content offset: '\(this.scrollingBounds.contentOffset)'")
-            // TODO Apply content offset to some view
-        }
+        */
     }
 
     /*
@@ -62,7 +78,6 @@ class SampleView: UIView
 
     // MARK: - ITEM BACKGROUNDS
     
-    @IBOutlet private var itemsView: UIView!
     private var scrollView: UIView!
     private var backgroundViews = [UIView]()
 

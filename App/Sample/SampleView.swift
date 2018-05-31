@@ -1,6 +1,11 @@
 
 import UIKit
 
+private func SAMPLE_VIEW_LOG(_ message: String)
+{
+    NSLog("SampleView \(message)")
+}
+
 class SampleView: UIView
 {
 
@@ -23,10 +28,12 @@ class SampleView: UIView
         self.scrolling = Scrolling(trackedView: self.gestureView)
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
-            NSLog("Vertical delta: '\(this.scrolling.verticalDelta)'")
-            NSLog("Vertical velocity: '\(this.scrolling.verticalVelocity)'")
+            SAMPLE_VIEW_LOG("Vertical delta: '\(this.scrolling.verticalDelta)'")
+            SAMPLE_VIEW_LOG("Vertical velocity: '\(this.scrolling.verticalVelocity)'")
         }
-        // TODO Subscribe to finish report.
+        self.scrolling.verticalReport = {
+            SAMPLE_VIEW_LOG("Finished vertical scrolling")
+        }
     }
 
     /*

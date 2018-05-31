@@ -36,7 +36,7 @@ class Scrolling
             let piece = recognizer.view 
         else
         {
-            SCROLLING_LOG("Gesture recognizer has no view. Cannot proceed")
+            SCROLLING_LOG("ERROR Gesture recognizer has no view. Cannot proceed")
             return
         }
         let translation = recognizer.translation(in: piece.superview)
@@ -73,12 +73,15 @@ class Scrolling
             SCROLLING_LOG("Finish")
             let none = CGPoint(x: 0, y: 0)
             self.reportVerticalScrolling(none, none)
+            self.reportVerticalScrollingFinish()
         }
     }
 
     // MARK: - VERTICAL SCROLLING
     
     var verticalReport: SimpleCallback?
+    var verticalFinishReport: SimpleCallback?
+
     var verticalDelta: CGFloat = 0
     var verticalVelocity: CGFloat = 0
 
@@ -93,6 +96,14 @@ class Scrolling
         self.verticalDelta = delta.y
         self.verticalVelocity = velocity.y
         if let report = self.verticalReport
+        {
+            report()
+        }
+    }
+
+    private func reportVerticalScrollingFinish()
+    {
+        if let report = self.verticalFinishReport
         {
             report()
         }

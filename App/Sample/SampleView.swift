@@ -135,17 +135,28 @@ class SampleView: UIView
         let pageId = Int(round(position))
         SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
 
+
         for id in 0..<self.itemViews.count
         {
-            let view = self.itemViews[id]
-            var frame = view.frame
-            frame.origin.y = CGFloat(id) * ITEM_HEIGHT + offset
             let distance = CGFloat(id) - position
-            let height = (1.0 - abs(distance) / 2.0) * VIEWPORT_HEIGHT / (VIEWPORT_HEIGHT / ITEM_HEIGHT)
-            frame.size.height = height > 0 ? height : 0
-            SAMPLE_VIEW_LOG("id '\(id)' height: '\(height)' distance: '\(distance)'")
+            let view = self.itemViews[id]
+            let isVisible = (abs(distance) < 1.5)
+            view.isHidden = !isVisible
+            if (isVisible)
+            {
+                // Height.
+                let height = (1.0 - abs(distance) / 2.0) * VIEWPORT_HEIGHT / (VIEWPORT_HEIGHT / ITEM_HEIGHT)
+                SAMPLE_VIEW_LOG("id '\(id)' height: '\(height)' distance: '\(distance)'")
+                var frame = view.frame
+                frame.size.height = height > 0 ? height : 0
+                // Position.
 
-            view.frame = frame
+                let center = VIEWPORT_HEIGHT / 2.0 + distance * ITEM_HEIGHT / 2.0
+                //let prevCenter = curCenter - curItem.size.height / 2.0 - prevItem.size.height / 2.0
+                //let nextCenter = curCenter + curItem.size.height / 2.0 + prevItem.size.height / 2.0
+                frame.origin.y = (center - frame.size.height / 2.0)
+                view.frame = frame
+            }
         }
     }
 

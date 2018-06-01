@@ -13,9 +13,9 @@ private let ITEM_COLLAPSED_HEIGHT: CGFloat = 50
 private let SCREEN_WIDTH: CGFloat = 320
 
 private let VIEWPORT_HEIGHT: CGFloat = 300
-private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT + ITEM_COLLAPSED_HEIGHT * 6 // items' count - 1
+private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT + ITEM_HEIGHT * 6 // items' count - 1
 
-private let PAGE_SCROLL_SIZE: CGFloat = ITEM_COLLAPSED_HEIGHT
+private let PAGE_SCROLL_SIZE: CGFloat = ITEM_HEIGHT
 
 class SampleView: UIView
 {
@@ -122,22 +122,30 @@ class SampleView: UIView
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
-            let offset = this.scrollingBounds.contentOffset
-            SAMPLE_VIEW_LOG("Offset: '\(offset)'")
-            let position = -offset / PAGE_SCROLL_SIZE + 1
-            SAMPLE_VIEW_LOG("Position: '\(position)'")
-            let pageId = Int(round(position))
-            SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
+            this.layItemsOut()
+        }
+    }
 
-            let height = ITEM_COLLAPSED_HEIGHT
-            for id in 0..<this.itemViews.count
-            {
-                let view = this.itemViews[id]
-                var frame = view.frame
-                frame.size.height = height
-                view.frame = frame
-            }
+    private func layItemsOut()
+    {
+        let offset = self.scrollingBounds.contentOffset
+        SAMPLE_VIEW_LOG("Offset: '\(offset)'")
+        let position = -offset / PAGE_SCROLL_SIZE + 1
+        SAMPLE_VIEW_LOG("Position: '\(position)'")
+        let pageId = Int(round(position))
+        SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
 
+        for id in 0..<self.itemViews.count
+        {
+            let view = self.itemViews[id]
+            var frame = view.frame
+            frame.origin.y = CGFloat(id) * ITEM_HEIGHT + offset
+            let distance = CGFloat(id) - position
+            let height = (1.0 - abs(distance) / 2.0) * VIEWPORT_HEIGHT / (VIEWPORT_HEIGHT / ITEM_HEIGHT)
+            frame.size.height = height > 0 ? height : 0
+            SAMPLE_VIEW_LOG("id '\(id)' height: '\(height)' distance: '\(distance)'")
+
+            view.frame = frame
         }
     }
 

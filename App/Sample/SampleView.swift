@@ -15,6 +15,35 @@ private let VIEWPORT_HEIGHT: CGFloat = 300
 private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT * 7.5 // items' count + half to make the last item visible
 private let PAGE_SCROLL_SIZE: CGFloat = ITEM_HEIGHT
 
+/*
+
+Proximity to size factor ratios:
+* 0 -> 100%
+* (0; 0.5) -> (100%; 25%)
+* [0.5; Infinity) -> 25%
+
+*/
+private func sizeFactor(forCenterProximity proximity: CGFloat) -> CGFloat
+{
+    // 0 -> 1.
+    if (proximity == 0)
+    {
+        return 1
+    }
+    // [0.5; Inifinity) -> 0.25.
+    else if (proximity >= 0.5)
+    {
+        return 0.25
+    }
+    // (0; 0.5) -> (1; 0.25).
+    // Convert proximity to (0; 1) range,
+    // which can be treated as (0%; 100%) range.
+    let unitProximity = proximity * 2.0
+    let rangeSize = CGFloat(1.0) - 0.25 // = 0.75
+    let factor = 1.0 - rangeSize * unitProximity
+    return factor
+}
+
 class SampleView: UIView
 {
 
@@ -184,25 +213,29 @@ class SampleView: UIView
         SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
 
         let origin = VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0
-        let height = ITEM_HEIGHT
-        var y = origin - position * height
+        // The first item is central at the moment.
+        var y = origin - position * ITEM_HEIGHT
 
         for id in 0..<self.itemViews.count
         {
             let view = self.itemViews[id]
-
-            // Resize and reposition view.
             var frame = view.frame
-            // Set constant height.
-            frame.size.height = height
-            // Set view position.
+
+            // Height.
+            let proximity = abs(CGFloat(id) - position)
+            let factor = sizeFactor(forCenterProximity: proximity)
+            SAMPLE_VIEW_LOG("view id: '\(id)' center proximity: '\(proximity)' size factor: '\(factor)'")
+            // Set height based on proximity to the center.
+            frame.size.height = ITEM_HEIGHT * factor
+
+            // Position.
             frame.origin.y = y
+            y += frame.size.height
+
+            // Apply changes.
             view.frame = frame
 
             SAMPLE_VIEW_LOG("view id: '\(id)' frame: '\(frame)'")
-
-            // Calculate position for the next view.
-            y += height
         }
     }
 

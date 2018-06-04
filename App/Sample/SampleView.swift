@@ -32,7 +32,8 @@ class SampleView: UIView
     {
         super.layoutSubviews()
         //self.setupContentView()
-        self.setupItemsLayout()
+        //self.setupItemsLayoutFullHeight()
+        self.setupItemsLayoutHalfHeight()
     }
 
     // MARK: - SCROLLING
@@ -117,9 +118,9 @@ class SampleView: UIView
         }
     }
 
-    // MARK: - ITEMS LAYOUT
+    // MARK: - FULL HEIGHT ITEMS LAYOUT
 
-    private func setupItemsLayout()
+    private func setupItemsLayoutFullHeight()
     {
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
@@ -161,42 +162,48 @@ class SampleView: UIView
         }
     }
 
-    private func layItemsOut()
+    // MARK: - HALF HEIGHT ITEMS LAYOUT
+
+    private func setupItemsLayoutHalfHeight()
+    {
+        // Scroll items.
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            this.layItemsOutHalfHeight()
+        }
+        // Perform the first laying out manually.
+        self.layItemsOutHalfHeight()
+    }
+
+    private func layItemsOutHalfHeight()
     {
         let offset = self.scrollingBounds.contentOffset
-        //SAMPLE_VIEW_LOG("Offset: '\(offset)'")
         let position = -offset / PAGE_SCROLL_SIZE
         SAMPLE_VIEW_LOG("Position: '\(position)'")
-        /*
         let pageId = Int(round(position))
         SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
-        */
 
-        /*
+        let origin = VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0
+        let height = ITEM_HEIGHT
+        var y = origin - position * height
 
         for id in 0..<self.itemViews.count
         {
-            let distance = CGFloat(id) - position
             let view = self.itemViews[id]
-            let isVisible = (abs(distance) < 1.5)
-            view.isHidden = !isVisible
-            if (isVisible)
-            {
-                // Height.
-                let height = (1.0 - abs(distance) / 2.0) * VIEWPORT_HEIGHT / (VIEWPORT_HEIGHT / ITEM_HEIGHT)
-                SAMPLE_VIEW_LOG("id '\(id)' height: '\(height)' distance: '\(distance)'")
-                var frame = view.frame
-                frame.size.height = height > 0 ? height : 0
-                // Position.
 
-                let center = VIEWPORT_HEIGHT / 2.0 + distance * ITEM_HEIGHT / 2.0
-                //let prevCenter = curCenter - curItem.size.height / 2.0 - prevItem.size.height / 2.0
-                //let nextCenter = curCenter + curItem.size.height / 2.0 + prevItem.size.height / 2.0
-                frame.origin.y = (center - frame.size.height / 2.0)
-                view.frame = frame
-            }
+            // Resize and reposition view.
+            var frame = view.frame
+            // Set constant height.
+            frame.size.height = height
+            // Set view position.
+            frame.origin.y = y
+            view.frame = frame
+
+            SAMPLE_VIEW_LOG("view id: '\(id)' frame: '\(frame)'")
+
+            // Calculate position for the next view.
+            y += height
         }
-        */
     }
 
 }

@@ -7,14 +7,12 @@ private func SAMPLE_VIEW_LOG(_ message: String)
     NSLog("SampleView \(message)")
 }
 
-private let ITEM_HEIGHT: CGFloat = 200
-private let ITEM_COLLAPSED_HEIGHT: CGFloat = 50
-
 private let SCREEN_WIDTH: CGFloat = 320
 
+private let ITEM_HEIGHT: CGFloat = 200
+private let ITEM_COLLAPSED_HEIGHT: CGFloat = 50
 private let VIEWPORT_HEIGHT: CGFloat = 300
-private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT + ITEM_HEIGHT * 6 // items' count - 1
-
+private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT * 7.5 // items' count + half to make the last item visible
 private let PAGE_SCROLL_SIZE: CGFloat = ITEM_HEIGHT
 
 class SampleView: UIView
@@ -28,9 +26,13 @@ class SampleView: UIView
     {
         super.awakeFromNib()
         self.setupScrolling()
+    }
+
+    override func layoutSubviews()
+    {
+        super.layoutSubviews()
         //self.setupContentView()
         self.setupItemsLayout()
-
     }
 
     // MARK: - SCROLLING
@@ -122,19 +124,55 @@ class SampleView: UIView
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
-            this.layItemsOut()
+            this.layItemsOutFullHeight()
+        }
+        // Perform the first laying out manually.
+        self.layItemsOutFullHeight()
+    }
+
+    private func layItemsOutFullHeight()
+    {
+        let offset = self.scrollingBounds.contentOffset
+        let position = -offset / PAGE_SCROLL_SIZE
+        SAMPLE_VIEW_LOG("Position: '\(position)'")
+        let pageId = Int(round(position))
+        SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
+
+        let origin = VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0
+        let height = ITEM_HEIGHT
+        var y = origin - position * height
+
+        for id in 0..<self.itemViews.count
+        {
+            let view = self.itemViews[id]
+
+            // Resize and reposition view.
+            var frame = view.frame
+            // Set constant height.
+            frame.size.height = height
+            // Set view position.
+            frame.origin.y = y
+            view.frame = frame
+
+            SAMPLE_VIEW_LOG("view id: '\(id)' frame: '\(frame)'")
+
+            // Calculate position for the next view.
+            y += height
         }
     }
 
     private func layItemsOut()
     {
         let offset = self.scrollingBounds.contentOffset
-        SAMPLE_VIEW_LOG("Offset: '\(offset)'")
-        let position = -offset / PAGE_SCROLL_SIZE + 1
+        //SAMPLE_VIEW_LOG("Offset: '\(offset)'")
+        let position = -offset / PAGE_SCROLL_SIZE
         SAMPLE_VIEW_LOG("Position: '\(position)'")
+        /*
         let pageId = Int(round(position))
         SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
+        */
 
+        /*
 
         for id in 0..<self.itemViews.count
         {
@@ -158,6 +196,7 @@ class SampleView: UIView
                 view.frame = frame
             }
         }
+        */
     }
 
 }

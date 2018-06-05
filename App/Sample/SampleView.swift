@@ -15,35 +15,6 @@ private let VIEWPORT_HEIGHT: CGFloat = 300
 private let CONTENT_HEIGHT: CGFloat = VIEWPORT_HEIGHT + ITEM_COLLAPSED_HEIGHT * 6 // item's count - 1
 private let PAGE_SCROLL_SIZE: CGFloat = ITEM_COLLAPSED_HEIGHT
 
-/*
-
-Proximity to size factor ratios:
-* 0 -> 100%
-* (0; 0.5) -> (100%; 25%)
-* [0.5; Infinity) -> 25%
-
-*/
-private func sizeFactor(forCenterProximity proximity: CGFloat) -> CGFloat
-{
-    // 0 -> 1.
-    if (proximity == 0)
-    {
-        return 1
-    }
-    // [0.5; Inifinity) -> 0.25.
-    else if (proximity >= 0.5)
-    {
-        return 0.25
-    }
-    // (0; 0.5) -> (1; 0.25).
-    // Convert proximity to (0; 1) range,
-    // which can be treated as (0%; 100%) range.
-    let unitProximity = proximity * 2.0
-    let rangeSize = CGFloat(1.0) - 0.25 // = 0.75
-    let factor = 1.0 - rangeSize * unitProximity
-    return factor
-}
-
 class SampleView: UIView
 {
 
@@ -62,7 +33,7 @@ class SampleView: UIView
         super.layoutSubviews()
         //self.setupContentView()
         //self.setupItemsLayoutFullHeight()
-        self.setupItemsLayoutHalfHeight()
+        self.setupItemsLayoutQuarterHeight()
     }
 
     // MARK: - SCROLLING
@@ -191,48 +162,60 @@ class SampleView: UIView
         }
     }
 
-    // MARK: - HALF HEIGHT ITEMS LAYOUT
+    // MARK: - QUARTER HEIGHT ITEMS LAYOUT
 
-    private func setupItemsLayoutHalfHeight()
+    private func setupItemsLayoutQuarterHeight()
     {
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
-            this.layItemsOutHalfHeight()
+            this.layItemsOutQuarterHeight()
         }
         // Perform the first laying out manually.
-        self.layItemsOutHalfHeight()
+        self.layItemsOutQuarterHeight()
     }
 
-    private func layItemsOutHalfHeight()
+    private func layItemsOutQuarterHeight()
     {
         var logMessage = ""
         let offset = self.scrollingBounds.contentOffset
         logMessage += "Offset: '\(-offset)' "
-        logMessage += "PageScrollSize: '\(PAGE_SCROLL_SIZE)' "
+        //logMessage += "PageScrollSize: '\(PAGE_SCROLL_SIZE)' "
         let position = -offset / PAGE_SCROLL_SIZE
         logMessage += "Position: '\(position)' "
-        let pageId = Int(round(position))
-        logMessage += "Page id: '\(pageId)' "
+        let curPage = Int(position)
+        logMessage += "CurPage: '\(curPage)' "
+        //let nextPage = curPage + 1
 
         SAMPLE_VIEW_LOG(logMessage)
 
-        /*
-        let origin = VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0
-        // The first item is central at the moment.
-        var y = origin - position * ITEM_HEIGHT
+        var y: CGFloat = 0
 
         for id in 0..<self.itemViews.count
         {
+            logMessage = ""
+            logMessage += "ViewId: '\(id)' "
+
+            let distanceToCurPage = abs(position - CGFloat(id))
+            logMessage += "DistanceToCurPage: '\(distanceToCurPage)' "
+
+            // Default size factor.
+            // TODO Extract constant.
+            var sizeFactor: CGFloat = 0.25
+            if distanceToCurPage < 1
+            {
+                let factor = 1.0 - distanceToCurPage
+                // Restrict factor (linearly) to [0.25; 1] range, amplitude = 1 - 0.25 = 0.75
+                // TODO Extract constant
+                let amplitude: CGFloat = 0.75
+                sizeFactor = amplitude * factor + 0.25
+                logMessage += "SizeFactor: '\(sizeFactor)' "
+            }
+
             let view = self.itemViews[id]
             var frame = view.frame
-
             // Height.
-            let proximity = abs(CGFloat(id) - position)
-            let factor = sizeFactor(forCenterProximity: proximity)
-            SAMPLE_VIEW_LOG("view id: '\(id)' center proximity: '\(proximity)' size factor: '\(factor)'")
-            // Set height based on proximity to the center.
-            frame.size.height = ITEM_HEIGHT * factor
+            frame.size.height = ITEM_HEIGHT * sizeFactor
 
             // Position.
             frame.origin.y = y
@@ -241,9 +224,8 @@ class SampleView: UIView
             // Apply changes.
             view.frame = frame
 
-            SAMPLE_VIEW_LOG("view id: '\(id)' frame: '\(frame)'")
+            SAMPLE_VIEW_LOG(logMessage)
         }
-        */
     }
 
 }

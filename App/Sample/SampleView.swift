@@ -1,21 +1,12 @@
 
 import UIKit
 
-// Internal logging function.
-private func SAMPLE_VIEW_LOG(_ message: String)
-{
-    NSLog("SampleView \(message)")
-}
-
-private let SCREEN_WIDTH: CGFloat = 320
-
 private let ITEM_HEIGHT: CGFloat = 200
 private let ITEM_MIN_SIZE_FACTOR: CGFloat = 0.25
 private let ITEM_MAX_SIZE_FACTOR: CGFloat = 1.0
 private let ITEM_HEIGHT_COLLAPSED: CGFloat = ITEM_HEIGHT * ITEM_MIN_SIZE_FACTOR
 
 private let VIEWPORT_HEIGHT: CGFloat = 300
-private let CONTENT_HEIGHT: CGFloat = VIEWPORT_HEIGHT + ITEM_HEIGHT_COLLAPSED * 6 // item's count - 1
 private let PAGE_SCROLL_SIZE: CGFloat = ITEM_HEIGHT_COLLAPSED
 
 class SampleView: UIView
@@ -34,23 +25,21 @@ class SampleView: UIView
     override func layoutSubviews()
     {
         super.layoutSubviews()
+        self.generateItemViews()
         //self.setupItemsLayout01()
         self.setupItemsLayout02()
     }
 
     // MARK: - SCROLLING
 
-    private var scrolling: Scrolling!
-    private var scrollingBounds: ScrollingBounds!
+    var scrolling: Scrolling!
+    var scrollingBounds: ScrollingBounds!
     
     private func setupScrolling()
     {
         self.scrolling = Scrolling(trackedView: self.gestureView)
-        self.scrollingBounds =
-            ScrollingBounds(
-                viewportHeight: VIEWPORT_HEIGHT,
-                contentHeight: CONTENT_HEIGHT
-            )
+        self.scrollingBounds = ScrollingBounds()
+        self.scrollingBounds.viewportHeight = VIEWPORT_HEIGHT
         self.scrolling.verticalReport = { [weak self] in
             guard let this = self else { return }
             this.scrollingBounds.setContentOffset(delta: this.scrolling.verticalDelta)
@@ -65,13 +54,11 @@ class SampleView: UIView
 
     private var items = [MasterItem]()
 
+    // NOTE Only call this function before first display.
     func setItems(_ items: [MasterItem])
     {
         self.items = items
-        // TODO Provide size from actual screen size (80% height, 100% width)
-        let size = CGSize(width: SCREEN_WIDTH, height: ITEM_HEIGHT)
-        self.generateItemViews(for: self.items, withSize: size)
-        // TODO Display items in views
+        self.scrollingBounds.contentHeight = VIEWPORT_HEIGHT + ITEM_HEIGHT_COLLAPSED * CGFloat(items.count - 1)
     }
 
     @IBOutlet private var itemsView: UIView!
@@ -79,6 +66,13 @@ class SampleView: UIView
     // MARK: - ITEM VIEWS
     
     private var itemViews = [UIView]()
+
+    private func generateItemViews()
+    {
+        let width = self.frame.size.width
+        let size = CGSize(width: width, height: ITEM_HEIGHT)
+        self.generateItemViews(for: self.items, withSize: size)
+    }
 
     private func generateItemViews(for items: [MasterItem], withSize size: CGSize)
     {

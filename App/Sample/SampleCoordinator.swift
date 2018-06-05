@@ -10,6 +10,7 @@ class SampleCoordinator
     var rootVCChanged: SimpleCallback?
 
     private var sampleView: SampleView!
+    private var sampleViewLayout02: SampleView!
 
     init()
     {

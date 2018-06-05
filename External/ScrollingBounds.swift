@@ -19,16 +19,11 @@ class ScrollingBounds
 
     // MARK: - SETUP
 
-    private let viewportHeight: CGFloat
-    private let contentHeight: CGFloat
+    // NOTE Only change these heights BEFORE first display.
+    var viewportHeight: CGFloat = 0
+    var contentHeight: CGFloat = 0
 
-    init(
-        viewportHeight: CGFloat,
-        contentHeight: CGFloat,
-        initialContentOffset: CGFloat = 0
-    ) {
-        self.viewportHeight = viewportHeight
-        self.contentHeight = contentHeight
+    init(initialContentOffset: CGFloat = 0) {
         self.contentOffset = initialContentOffset
         SCROLLING_BOUNDS_LOG(
             "Viewport height: '\(viewportHeight)' " +

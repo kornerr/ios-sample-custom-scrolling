@@ -1,13 +1,14 @@
 import UIKit
 
-func layViewsOutQuarterHeightStatic(
+func layViewsOut02(
     views: [UIView],
+    offset: CGFloat,
     position: CGFloat,
     maxViewHeight: CGFloat,
     minSizeFactor: CGFloat,
     maxSizeFactor: CGFloat)
 {
-    var y: CGFloat = 0
+    var y: CGFloat = offset - position * maxViewHeight * minSizeFactor
     for id in 0..<views.count
     {
         // Distance from current position to this view.

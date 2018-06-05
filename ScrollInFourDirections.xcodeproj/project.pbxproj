@@ -21,8 +21,8 @@
 		9F118B4620BC5CA300C0DC20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F118B4520BC5CA300C0DC20 /* Localizable.strings */; };
 		9F32CD3D20BEC3B5007BC193 /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F32CD3B20BEC3B4007BC193 /* DetailItem.swift */; };
 		9F32CD3E20BEC3B5007BC193 /* MasterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F32CD3C20BEC3B4007BC193 /* MasterItem.swift */; };
-		9F5FCA8920C6DBF5005B9D7B /* LayoutQuarterHeightStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5FCA8820C6DBF4005B9D7B /* LayoutQuarterHeightStatic.swift */; };
-		9F5FCA8B20C6DDC1005B9D7B /* LayoutQuarterHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5FCA8A20C6DDC1005B9D7B /* LayoutQuarterHeight.swift */; };
+		9F5FCA8E20C6E0A2005B9D7B /* Layout02.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5FCA8C20C6E0A2005B9D7B /* Layout02.swift */; };
+		9F5FCA8F20C6E0A2005B9D7B /* Layout01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5FCA8D20C6E0A2005B9D7B /* Layout01.swift */; };
 		9F88B8C920BD8A3A00DB1D12 /* FixedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */; };
 		9F944F9220C018F90026D092 /* Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F944F9120C018F80026D092 /* Scrolling.swift */; };
 		9F944F9420C02C460026D092 /* ScrollingBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F944F9320C02C460026D092 /* ScrollingBounds.swift */; };
@@ -45,8 +45,8 @@
 		9F118B4520BC5CA300C0DC20 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		9F32CD3B20BEC3B4007BC193 /* DetailItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailItem.swift; sourceTree = "<group>"; };
 		9F32CD3C20BEC3B4007BC193 /* MasterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterItem.swift; sourceTree = "<group>"; };
-		9F5FCA8820C6DBF4005B9D7B /* LayoutQuarterHeightStatic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutQuarterHeightStatic.swift; sourceTree = "<group>"; };
-		9F5FCA8A20C6DDC1005B9D7B /* LayoutQuarterHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutQuarterHeight.swift; sourceTree = "<group>"; };
+		9F5FCA8C20C6E0A2005B9D7B /* Layout02.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout02.swift; sourceTree = "<group>"; };
+		9F5FCA8D20C6E0A2005B9D7B /* Layout01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout01.swift; sourceTree = "<group>"; };
 		9F88B8C820BD8A3A00DB1D12 /* FixedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedTableView.swift; sourceTree = "<group>"; };
 		9F944F9120C018F80026D092 /* Scrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrolling.swift; sourceTree = "<group>"; };
 		9F944F9320C02C460026D092 /* ScrollingBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingBounds.swift; sourceTree = "<group>"; };
@@ -97,8 +97,8 @@
 		9F118B2F20BC57EC00C0DC20 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				9F5FCA8820C6DBF4005B9D7B /* LayoutQuarterHeightStatic.swift */,
-				9F5FCA8A20C6DDC1005B9D7B /* LayoutQuarterHeight.swift */,
+				9F5FCA8D20C6E0A2005B9D7B /* Layout01.swift */,
+				9F5FCA8C20C6E0A2005B9D7B /* Layout02.swift */,
 				9F118B3020BC57FB00C0DC20 /* SampleCoordinator.swift */,
 				9F118B3920BC58BD00C0DC20 /* SampleView.swift */,
 				9F118B3820BC58BD00C0DC20 /* SampleView.xib */,
@@ -203,12 +203,12 @@
 				9F118B3320BC57FB00C0DC20 /* SampleCoordinator.swift in Sources */,
 				9F118B4120BC58F200C0DC20 /* UIViewControllerTemplate.swift in Sources */,
 				9F32CD3E20BEC3B5007BC193 /* MasterItem.swift in Sources */,
+				9F5FCA8E20C6E0A2005B9D7B /* Layout02.swift in Sources */,
 				9F118B1E20BC54D800C0DC20 /* AppDelegate.swift in Sources */,
 				9F32CD3D20BEC3B5007BC193 /* DetailItem.swift in Sources */,
-				9F5FCA8920C6DBF5005B9D7B /* LayoutQuarterHeightStatic.swift in Sources */,
+				9F5FCA8F20C6E0A2005B9D7B /* Layout01.swift in Sources */,
 				9F118B4320BC58F200C0DC20 /* UITableViewCellTemplate.swift in Sources */,
 				9F118B3720BC581F00C0DC20 /* SimpleCallback.swift in Sources */,
-				9F5FCA8B20C6DDC1005B9D7B /* LayoutQuarterHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

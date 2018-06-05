@@ -34,8 +34,8 @@ class SampleView: UIView
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        //self.setupItemsLayoutQuarterHeightStatic()
-        self.setupItemsLayoutQuarterHeight()
+        //self.setupItemsLayout01()
+        self.setupItemsLayout02()
     }
 
     // MARK: - SCROLLING
@@ -100,25 +100,26 @@ class SampleView: UIView
         }
     }
 
-    // MARK: - ITEMS LAYOUT QUARTER HEIGHT STATIC
+    // MARK: - LAYOUT 01
 
-    private func setupItemsLayoutQuarterHeightStatic()
+    private func setupItemsLayout01()
     {
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
-            this.layItemsOutQuarterHeightStatic()
+            this.layItemsOut01()
         }
         // Perform the first laying out manually.
-        self.layItemsOutQuarterHeightStatic()
+        self.layItemsOut01()
     }
 
-    private func layItemsOutQuarterHeightStatic()
+    private func layItemsOut01()
     {
         let offset = self.scrollingBounds.contentOffset
         let position = -offset / PAGE_SCROLL_SIZE
-        layViewsOutQuarterHeightStatic(
+        layViewsOut01(
             views: self.itemViews,
+            offset: 0,
             position: position,
             maxViewHeight: ITEM_HEIGHT,
             minSizeFactor: ITEM_MIN_SIZE_FACTOR,
@@ -126,25 +127,26 @@ class SampleView: UIView
         )
     }
 
-    // MARK: - ITEMS LAYOUT QUARTER HEIGHT
+    // MARK: - LAYOUT 02
 
-    private func setupItemsLayoutQuarterHeight()
+    private func setupItemsLayout02()
     {
         // Scroll items.
         self.scrollingBounds.contentOffsetReport = { [weak self] in
             guard let this = self else { return }
-            this.layItemsOutQuarterHeight()
+            this.layItemsOut02()
         }
         // Perform the first laying out manually.
-        self.layItemsOutQuarterHeight()
+        self.layItemsOut02()
     }
 
-    private func layItemsOutQuarterHeight()
+    private func layItemsOut02()
     {
         let offset = self.scrollingBounds.contentOffset
         let position = -offset / PAGE_SCROLL_SIZE
-        layViewsOutQuarterHeight(
+        layViewsOut02(
             views: self.itemViews,
+            offset: VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0, // Center of the view port.
             position: position,
             maxViewHeight: ITEM_HEIGHT,
             minSizeFactor: ITEM_MIN_SIZE_FACTOR,

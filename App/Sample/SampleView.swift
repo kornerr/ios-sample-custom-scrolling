@@ -10,10 +10,10 @@ private func SAMPLE_VIEW_LOG(_ message: String)
 private let SCREEN_WIDTH: CGFloat = 320
 
 private let ITEM_HEIGHT: CGFloat = 200
-private let ITEM_COLLAPSED_HEIGHT: CGFloat = 50
+private let ITEM_COLLAPSED_HEIGHT: CGFloat = ITEM_HEIGHT * 0.25
 private let VIEWPORT_HEIGHT: CGFloat = 300
-private let CONTENT_HEIGHT: CGFloat = ITEM_HEIGHT * 7.5 // items' count + half to make the last item visible
-private let PAGE_SCROLL_SIZE: CGFloat = ITEM_HEIGHT
+private let CONTENT_HEIGHT: CGFloat = VIEWPORT_HEIGHT + ITEM_COLLAPSED_HEIGHT * 6 // item's count - 1
+private let PAGE_SCROLL_SIZE: CGFloat = ITEM_COLLAPSED_HEIGHT
 
 /*
 
@@ -206,12 +206,18 @@ class SampleView: UIView
 
     private func layItemsOutHalfHeight()
     {
+        var logMessage = ""
         let offset = self.scrollingBounds.contentOffset
+        logMessage += "Offset: '\(-offset)' "
+        logMessage += "PageScrollSize: '\(PAGE_SCROLL_SIZE)' "
         let position = -offset / PAGE_SCROLL_SIZE
-        SAMPLE_VIEW_LOG("Position: '\(position)'")
+        logMessage += "Position: '\(position)' "
         let pageId = Int(round(position))
-        SAMPLE_VIEW_LOG("Page id: '\(pageId)'")
+        logMessage += "Page id: '\(pageId)' "
 
+        SAMPLE_VIEW_LOG(logMessage)
+
+        /*
         let origin = VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0
         // The first item is central at the moment.
         var y = origin - position * ITEM_HEIGHT
@@ -237,6 +243,7 @@ class SampleView: UIView
 
             SAMPLE_VIEW_LOG("view id: '\(id)' frame: '\(frame)'")
         }
+        */
     }
 
 }

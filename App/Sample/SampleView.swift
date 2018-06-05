@@ -34,7 +34,8 @@ class SampleView: UIView
     override func layoutSubviews()
     {
         super.layoutSubviews()
-        self.setupItemsLayoutQuarterHeightStatic()
+        //self.setupItemsLayoutQuarterHeightStatic()
+        self.setupItemsLayoutQuarterHeight()
     }
 
     // MARK: - SCROLLING
@@ -125,5 +126,30 @@ class SampleView: UIView
         )
     }
 
+    // MARK: - ITEMS LAYOUT QUARTER HEIGHT
+
+    private func setupItemsLayoutQuarterHeight()
+    {
+        // Scroll items.
+        self.scrollingBounds.contentOffsetReport = { [weak self] in
+            guard let this = self else { return }
+            this.layItemsOutQuarterHeight()
+        }
+        // Perform the first laying out manually.
+        self.layItemsOutQuarterHeight()
+    }
+
+    private func layItemsOutQuarterHeight()
+    {
+        let offset = self.scrollingBounds.contentOffset
+        let position = -offset / PAGE_SCROLL_SIZE
+        layViewsOutQuarterHeight(
+            views: self.itemViews,
+            position: position,
+            maxViewHeight: ITEM_HEIGHT,
+            minSizeFactor: ITEM_MIN_SIZE_FACTOR,
+            maxSizeFactor: ITEM_MAX_SIZE_FACTOR
+        )
+    }
 }
 

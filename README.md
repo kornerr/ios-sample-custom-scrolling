@@ -28,12 +28,10 @@ Here's how the application looks like:
 
 # Structure overview
 
-### Top level directories
+### Prominent top level directories
 
 * `App/`
     * code specific to this application
-* `CustomScrolling.xcodeproj/`
-    * Xcode project directory
 * `External/`
     * code shared among different applications
 

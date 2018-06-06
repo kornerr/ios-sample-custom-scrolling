@@ -14,7 +14,7 @@ Here's how the application looks like:
 
 ![Preview][preview]
 
-# XIB structure
+# SampleView XIB
 
 ![XIB structure][xib-structure]
 

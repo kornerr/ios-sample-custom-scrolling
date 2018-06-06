@@ -72,11 +72,11 @@ Here's how the application looks like:
     * reports vertical scrolling delta and velocity
 * `External/ScrollingBounds.swift`
     * has viewport and content concepts
-    * restricts scrolling to make content stays inside viewport 
+    * restricts scrolling to make content stay inside viewport 
     * only works when content's height is greater than viewport's one
 * `External/UIView+Embed.swift`
     * provides `embeddedView` property extension to `UIView` classes
-    * snaps child `UIView` to hosting `UIView` with constraints
+    * snaps child `UIView` to parent (host) `UIView` with constraints
 * `External/UIView+NibFile.swift`
     * provides `loadFromNib` function extension to `UIView` classes
     * loads `UIView` derivative instance from `XIB`

@@ -46,7 +46,7 @@ class SampleView: UIView
     // MARK: - ITEMS
 
     // NOTE Set BEFORE first display.
-    var items = [MasterItem]()
+    var items = [Item]()
     // NOTE Set BEFORE first display.
     var itemHeight: CGFloat = 0
     // NOTE Set BEFORE first display.
@@ -55,7 +55,7 @@ class SampleView: UIView
     @IBOutlet private var itemsView: UIView!
     var itemViews = [UIView]()
 
-    private func generateItemViews(for items: [MasterItem], withSize size: CGSize)
+    private func generateItemViews(for items: [Item], withSize size: CGSize)
     {
         // Remove previously generated views.
         for view in self.itemViews

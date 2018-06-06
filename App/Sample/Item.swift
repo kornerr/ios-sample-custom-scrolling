@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct MasterItem
+struct Item
 {
     var id: String
     var title = ""

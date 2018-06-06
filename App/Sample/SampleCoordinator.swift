@@ -17,56 +17,65 @@ class SampleCoordinator
     var rootVC: UIViewController!
     var rootVCChanged: SimpleCallback?
 
-    private var sampleView: SampleView!
-
     init()
     {
-        // Create View and VC.
-        self.sampleView = UIView.loadFromNib()
-        self.sampleView.setupScrolling(viewportHeight: VIEWPORT_HEIGHT)
-        self.sampleView.itemHeight = ITEM_HEIGHT
-        self.sampleView.itemHeightCollapsed = ITEM_HEIGHT_COLLAPSED
+        // Create sample views with both layouts.
+        self.setupLayout01SampleView()
+        let layout01VC = UIViewControllerTemplate<SampleView>(mainView: self.layout01SampleView)
+        layout01VC.title = "Layout01"
 
-        let vc = UIViewControllerTemplate<SampleView>(mainView: self.sampleView)
-        //let nc = UINavigationController(rootViewController: vc)
-        self.rootVC = vc
+        self.setupLayout02SampleView()
+        let layout02VC = UIViewControllerTemplate<SampleView>(mainView: self.layout02SampleView)
+        layout02VC.title = "Layout02"
 
-        self.setupItems()
-        self.setupLayout()
+        // Display them.
+        let tc = UITabBarController()
+        tc.viewControllers = [layout01VC, layout02VC]
+        self.rootVC = tc
     }
 
-    private func setupItems()
+    private func createItems() -> [Item]
     {
-        typealias MItem = MasterItem
-        let items = [
-            MItem("EDGE-TOP", color: .red),
-            MItem("Clothing", color: .magenta),
-            MItem("Swim", color: .green),
-            MItem("Shoes", color: .blue),
-            MItem("Handbags", color: .yellow),
-            MItem("Accessories", color: .cyan),
-            MItem("EDGE-BOTTOM", color: .gray),
+        return [
+            Item("EDGE-TOP", color: .red),
+            Item("News", color: .magenta),
+            Item("Articles", color: .green),
+            Item("Promotions", color: .blue),
+            Item("Aggregation", color: .yellow),
+            Item("Sales", color: .cyan),
+            Item("EDGE-BOTTOM", color: .gray),
         ]
-        self.sampleView.items = items
     }
 
-    // MARK: - LAYING OUT
-
-    private func setupLayout()
+    private func createSampleView() -> SampleView
     {
-        self.sampleView.layoutReport = { [weak self] in
-            guard let this = self else { return }
-            //this.setupLayout01()
-            this.setupLayout02()
-        }
+        let view: SampleView! = UIView.loadFromNib()
+        view.setupScrolling(viewportHeight: VIEWPORT_HEIGHT)
+        view.itemHeight = ITEM_HEIGHT
+        view.itemHeightCollapsed = ITEM_HEIGHT_COLLAPSED
+
+        view.items = self.createItems()
+
+        return view
     }
 
     // MARK: - LAYOUT 01
 
+    private var layout01SampleView: SampleView!
+
+    private func setupLayout01SampleView()
+    {
+        self.layout01SampleView = self.createSampleView()
+        self.layout01SampleView.layoutReport = { [weak self] in
+            guard let this = self else { return }
+            this.setupLayout01()
+        }
+    }
+
     private func setupLayout01()
     {
         // Scroll items.
-        self.sampleView.scrollingOffsetReport = { [weak self] in
+        self.layout01SampleView.scrollingOffsetReport = { [weak self] in
             guard let this = self else { return }
             this.layItemsOut01()
         }
@@ -76,10 +85,10 @@ class SampleCoordinator
 
     private func layItemsOut01()
     {
-        let offset = self.sampleView.scrollingOffset
+        let offset = self.layout01SampleView.scrollingOffset
         let position = -offset / PAGE_SCROLL_SIZE
         layViewsOut01(
-            views: self.sampleView.itemViews,
+            views: self.layout01SampleView.itemViews,
             offset: 0,
             position: position,
             maxViewHeight: ITEM_HEIGHT,
@@ -90,10 +99,21 @@ class SampleCoordinator
 
     // MARK: - LAYOUT 02
 
+    private var layout02SampleView: SampleView!
+
+    private func setupLayout02SampleView()
+    {
+        self.layout02SampleView = self.createSampleView()
+        self.layout02SampleView.layoutReport = { [weak self] in
+            guard let this = self else { return }
+            this.setupLayout02()
+        }
+    }
+
     private func setupLayout02()
     {
         // Scroll items.
-        self.sampleView.scrollingOffsetReport = { [weak self] in
+        self.layout02SampleView.scrollingOffsetReport = { [weak self] in
             guard let this = self else { return }
             this.layItemsOut02()
         }
@@ -103,10 +123,10 @@ class SampleCoordinator
 
     private func layItemsOut02()
     {
-        let offset = self.sampleView.scrollingOffset
+        let offset = self.layout02SampleView.scrollingOffset
         let position = -offset / PAGE_SCROLL_SIZE
         layViewsOut02(
-            views: self.sampleView.itemViews,
+            views: self.layout02SampleView.itemViews,
             offset: VIEWPORT_HEIGHT / 2.0 - ITEM_HEIGHT / 2.0, // Center of the view port.
             position: position,
             maxViewHeight: ITEM_HEIGHT,

@@ -40,10 +40,10 @@ Here's how the application looks like:
 ### `App/` structure
 
 * `App/AppDelegate.swift`
-    * instantiate `SampleCoordinator`
-    * create UIWindow and set its `rootViewController`
+    * instantiates `SampleCoordinator`
+    * creates UIWindow and set its `rootViewController`
 * `App/SimpleCallback.swift`
-    * provide parameterless callback used for reporting
+    * provides parameterless callback used for reporting
 * `App/Sample/SampleCoordinator`
     * creates `SampleView` instances for each layout
     * creates `UIViewController` and `UINavigationController` for each `SampleView`

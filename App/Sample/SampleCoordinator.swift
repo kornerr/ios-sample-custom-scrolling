@@ -21,16 +21,18 @@ class SampleCoordinator
     {
         // Create sample views with both layouts.
         self.setupLayout01SampleView()
-        let layout01VC = UIViewControllerTemplate<SampleView>(mainView: self.layout01SampleView)
-        layout01VC.title = "Layout01"
+        let vc01 = UIViewControllerTemplate<SampleView>(mainView: self.layout01SampleView)
+        vc01.title = NSLocalizedString("Sample.Layout01", comment: "")
+        let nc01 = UINavigationController(rootViewController: vc01)
 
         self.setupLayout02SampleView()
-        let layout02VC = UIViewControllerTemplate<SampleView>(mainView: self.layout02SampleView)
-        layout02VC.title = "Layout02"
+        let vc02 = UIViewControllerTemplate<SampleView>(mainView: self.layout02SampleView)
+        vc02.title = NSLocalizedString("Sample.Layout02", comment: "")
+        let nc02 = UINavigationController(rootViewController: vc02)
 
         // Display them.
         let tc = UITabBarController()
-        tc.viewControllers = [layout01VC, layout02VC]
+        tc.viewControllers = [nc01, nc02]
         self.rootVC = tc
     }
 

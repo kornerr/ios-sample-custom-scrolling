@@ -28,7 +28,7 @@ Here's how the application looks like:
 
 # Structure overview
 
-## Top level directories
+### Top level directories
 
 * `App/`
     * code specific to this application
@@ -37,7 +37,7 @@ Here's how the application looks like:
 * `External/`
     * code shared among different applications
 
-## `App/` structure
+### `App/` structure
 
 * `App/AppDelegate.swift`
     * instantiate `SampleCoordinator`
@@ -64,7 +64,7 @@ Here's how the application looks like:
     * provides `layViewsOut02` function to perform laying out each scrolling change
     * resizes views and makes sure `currently centered` item is always at the center
 
-## `External/` files in use
+### `External/` files in use
 
 * `External/Scrolling.swift`
     * accept tracked `UIView`

@@ -18,13 +18,13 @@ Here's how the application looks like:
 
 ![XIB structure][xib-structure]
 
-SampleView contains two prominent UIViews:
+`SampleView` contains two prominent `UIView`s:
 
-* ItemsView
+* `ItemsView`
     * is parent to generated views representing items
-* GestureView
-    * gets UIPanGestureRecognizer installed at the start
-    * is located closer to the user than ItemsView to intercept all gestures
+* `GestureView`
+    * gets `UIPanGestureRecognizer` installed at the start
+    * is located closer to the user than `ItemsView` to intercept all gestures
 
 # Structure overview
 

@@ -41,15 +41,15 @@ Here's how the application looks like:
 
 * `App/AppDelegate.swift`
     * instantiates `SampleCoordinator`
-    * creates UIWindow and set its `rootViewController`
+    * creates `UIWindow` and sets its `rootViewController`
 * `App/SimpleCallback.swift`
     * provides parameterless callback used for reporting
-* `App/Sample/SampleCoordinator`
+* `App/Sample/SampleCoordinator.swift`
     * creates `SampleView` instances for each layout
     * creates `UIViewController` and `UINavigationController` for each `SampleView`
     * creates `UITabBarController`
-    * contains stub items to display
-    * contains viewport and item heights
+    * provides stub items to display
+    * provides viewport and item heights
 * `App/Sample/SampleView.swift`
     * configures scrolling with `Scrolling`, `ScrollingBounds`, and `UIPanGestureRecognizer`
     * accepts items to display
@@ -67,9 +67,9 @@ Here's how the application looks like:
 ### `External/` files in use
 
 * `External/Scrolling.swift`
-    * accept tracked `UIView`
-    * install `UIPanGestureRecognizer` to the tracked view
-    * report vertical scrolling delta and velocity
+    * accepts tracked `UIView`
+    * installs `UIPanGestureRecognizer` to the tracked view
+    * reports vertical scrolling delta and velocity
 * `External/ScrollingBounds.swift`
     * has viewport and content concepts
     * restricts scrolling to make content stays inside viewport 

@@ -28,7 +28,7 @@ Here's how the application looks like:
 
 # Structure overview
 
-Top level directories are:
+## Top level directories
 
 * `App/`
     * code specific to this application
@@ -37,7 +37,7 @@ Top level directories are:
 * `External/`
     * code shared among different applications
 
-`App/` structure:
+## `App/` structure
 
 * `App/AppDelegate.swift`
     * instantiate `SampleCoordinator`
@@ -64,7 +64,7 @@ Top level directories are:
     * provides `layViewsOut02` function to perform laying out each scrolling change
     * resizes views and makes sure `currently centered` item is always at the center
 
-Used `External/` files:
+## `External/` files in use
 
 * `External/Scrolling.swift`
     * accept tracked `UIView`

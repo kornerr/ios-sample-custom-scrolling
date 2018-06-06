@@ -67,7 +67,7 @@ Here's how the application looks like:
 ### `External/` files in use
 
 * `External/Scrolling.swift`
-    * accepts tracked `UIView`
+    * accepts `UIView` to track pan gestures at
     * installs `UIPanGestureRecognizer` to the tracked view
     * reports vertical scrolling delta and velocity
 * `External/ScrollingBounds.swift`
